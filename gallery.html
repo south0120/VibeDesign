@@ -602,6 +602,37 @@
       });
     }
     loadIframes();
+
+    // Save scroll position before navigating to preview
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href*="preview.html"]');
+      if (link) {
+        sessionStorage.setItem('gallery-scroll', window.scrollY);
+        sessionStorage.setItem('gallery-filter', document.querySelector('.filter-tag.active')?.dataset.filter || 'all');
+      }
+    });
+
+    // Restore scroll position when returning from preview
+    const savedScroll = sessionStorage.getItem('gallery-scroll');
+    const savedFilter = sessionStorage.getItem('gallery-filter');
+    if (savedScroll !== null) {
+      // Restore filter first
+      if (savedFilter && savedFilter !== 'all') {
+        document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+        const filterBtn = document.querySelector(`.filter-tag[data-filter="${savedFilter}"]`);
+        if (filterBtn) {
+          filterBtn.classList.add('active');
+          renderGallery(savedFilter);
+          loadIframes();
+        }
+      }
+      // Restore scroll position after a brief delay for DOM to render
+      requestAnimationFrame(() => {
+        window.scrollTo(0, parseInt(savedScroll));
+        sessionStorage.removeItem('gallery-scroll');
+        sessionStorage.removeItem('gallery-filter');
+      });
+    }
   </script>
 
   <script src="scripts.js"></script>
