@@ -196,3 +196,35 @@ Gutter:           24px
 ---
 
 *Template version: 1.0 — 2026-04-10 Procebo webinar*
+
+---
+
+## CSS / Component Examples
+
+```css
+/* ネオングロー ボーダー */
+.cyber-card {
+  background: #111;
+  border: 1px solid #00FF41;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.3), inset 0 0 8px rgba(0, 255, 65, 0.05);
+  border-radius: 4px;
+}
+
+/* HUDスキャンライン */
+.hud-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 1px, rgba(0, 255, 65, 0.03) 1px, rgba(0, 255, 65, 0.03) 2px
+  );
+  pointer-events: none;
+}
+
+/* パルスアニメーション */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 65, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.6); }
+}
+.cyber-pulse { animation: pulse-glow 2s infinite; }
+```

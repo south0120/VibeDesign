@@ -181,3 +181,39 @@ Gutter:           32px
 ---
 
 *Template version: 1.0 — 2026-04-10 Procebo webinar*
+
+---
+
+## CSS / Component Examples
+
+```css
+/* ニューモーフィズム 凸ボタン */
+.neu-btn {
+  background: #E0E5EC;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  box-shadow: 8px 8px 16px #b8bec7, -8px -8px 16px #ffffff;
+  transition: all 0.2s;
+}
+.neu-btn:active {
+  box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
+}
+
+/* ニューモーフィズム 凹インプット */
+.neu-input {
+  background: #E0E5EC;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 18px;
+  box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
+}
+
+/* ニューモーフィズム カード */
+.neu-card {
+  background: #E0E5EC;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 12px 12px 24px #b8bec7, -12px -12px 24px #ffffff;
+}
+```

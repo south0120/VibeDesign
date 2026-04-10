@@ -183,3 +183,30 @@ Gutter:           24px
 ---
 
 *Template version: 1.0 — 2026-04-10 Procebo webinar*
+
+---
+
+## CSS / Component Examples
+
+```css
+/* リキッドグラス カード */
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+}
+
+/* フロスト効果ナビバー */
+.glass-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: rgba(242, 242, 247, 0.6);
+  backdrop-filter: blur(40px) saturate(180%);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+}
+```

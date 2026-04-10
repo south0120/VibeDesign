@@ -162,3 +162,37 @@ Gutter:           24px
 ---
 
 *Template version: 1.0 — 2026-04-10 Procebo webinar*
+
+---
+
+## CSS / Component Examples
+
+```css
+/* ネオングロー テキスト */
+.neon-text {
+  color: #FF71CE;
+  text-shadow: 0 0 10px #FF71CE, 0 0 40px #FF71CE, 0 0 80px #FF71CE;
+}
+
+/* グリッチエフェクト */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 3px); }
+  40% { transform: translate(3px, -3px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+  100% { transform: translate(0); }
+}
+.glitch { animation: glitch 0.3s infinite; }
+
+/* スキャンライン背景 */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px
+  );
+  pointer-events: none;
+}
+```

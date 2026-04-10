@@ -104,3 +104,36 @@ Gutter:           24px
 ---
 
 *Design Style: Glassmorphism — 2026-04-10*
+
+---
+
+## CSS / Component Examples
+
+```css
+/* グラスモーフィズム カード */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+/* グラデーション背景 */
+.glass-bg {
+  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  min-height: 100vh;
+}
+
+/* グラスボタン */
+.glass-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 12px 24px;
+  color: #fff;
+  transition: background 0.3s;
+}
+.glass-btn:hover { background: rgba(255, 255, 255, 0.35); }
+```
