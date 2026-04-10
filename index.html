@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeDesign — デザインを、直感で。</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ============================================
+       CSS Variables — design.md カラーパレット準拠
+       ============================================ */
+    :root {
+      /* Base Colors */
+      --white: #FFFFFF;
+      --off-white: #F5F5F7;
+      --light-gray: #E8E8ED;
+      --mid-gray: #86868B;
+      --dark-gray: #424245;
+      --near-black: #1D1D1F;
+      --pure-black: #000000;
+
+      /* Accent Colors */
+      --blue: #0071E3;
+      --blue-hover: #0077ED;
+      --green: #34C759;
+      --orange: #FF9500;
+      --red: #FF3B30;
+      --purple: #AF52DE;
+      --teal: #5AC8FA;
+
+      /* Spacing Scale (8px grid) */
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 48px;
+      --space-xl: 80px;
+      --space-2xl: 120px;
+      --space-3xl: 200px;
+
+      /* Typography */
+      --font-primary: "SF Pro Display", "SF Pro Icons", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-mono: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
+    }
+
+    /* ============================================
+       Reset & Base
+       ============================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      color: var(--near-black);
+      background: var(--white);
+      line-height: 1.47;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: var(--blue-hover);
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ============================================
+       Navigation — 44px sticky, 控えめな存在感
+       ============================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--light-gray);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-inner {
+      width: 100%;
+      max-width: 980px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--near-black);
+      letter-spacing: -0.003em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: var(--near-black);
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+      text-decoration: none;
+    }
+    .nav-links a:hover {
+      opacity: 1;
+      text-decoration: none;
+    }
+
+    /* ============================================
+       Hero Section — ステージ照明効果
+       ============================================ */
+    .hero {
+      min-height: 100vh;
+      background: var(--pure-black);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-3xl) 22px var(--space-2xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(0, 113, 227, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--mid-gray);
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.011em;
+      text-align: center;
+      width: 100%;
+    }
+
+    .hero-title {
+      font-size: 96px;
+      font-weight: 700;
+      color: var(--off-white);
+      line-height: 1.05;
+      letter-spacing: -0.003em;
+      margin-bottom: var(--space-md);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: 100%;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, var(--blue), var(--teal), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--mid-gray);
+      line-height: 1.25;
+      max-width: 600px;
+      margin: 0 auto var(--space-lg);
+      letter-spacing: 0em;
+    }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+
+    /* ============================================
+       Buttons
+       ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      border-radius: 980px;
+      font-size: 17px;
+      font-weight: 400;
+      font-family: var(--font-primary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      text-decoration: none;
+      letter-spacing: 0.004em;
+    }
+    .btn:hover {
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: var(--blue-hover);
+      color: var(--white);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--teal);
+      border: 1px solid var(--dark-gray);
+    }
+    .btn-secondary:hover {
+      color: var(--white);
+      border-color: var(--mid-gray);
+    }
+
+    /* ============================================
+       Section Base
+       ============================================ */
+    .section {
+      padding: var(--space-2xl) 22px;
+    }
+
+    .section-inner {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--mid-gray);
+      text-align: center;
+      margin-bottom: var(--space-xs);
+      letter-spacing: 0.011em;
+    }
+
+    .section-title {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.003em;
+      text-align: center;
+      margin-bottom: var(--space-md);
+    }
+
+    .section-subtitle {
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--mid-gray);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto var(--space-xl);
+      line-height: 1.47;
+      letter-spacing: 0.011em;
+    }
+
+    /* ============================================
+       Features — ダーク背景セクション
+       ============================================ */
+    .section-dark {
+      background: var(--pure-black);
+      color: var(--off-white);
+    }
+
+    .section-dark .section-title {
+      color: var(--off-white);
+    }
+
+    .section-light-gray {
+      background: var(--off-white);
+    }
+
+    /* ============================================
+       Feature Grid — 2x2カードグリッド
+       ============================================ */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    .feature-card {
+      background: var(--near-black);
+      border-radius: 20px;
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: scale(1.01);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: var(--space-md);
+    }
+
+    .feature-icon-blue { background: rgba(0, 113, 227, 0.2); color: var(--blue); }
+    .feature-icon-purple { background: rgba(175, 82, 222, 0.2); color: var(--purple); }
+    .feature-icon-green { background: rgba(52, 199, 89, 0.2); color: var(--green); }
+    .feature-icon-orange { background: rgba(255, 149, 0, 0.2); color: var(--orange); }
+
+    .feature-card h3 {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--off-white);
+      margin-bottom: var(--space-sm);
+      line-height: 1.1;
+      letter-spacing: 0em;
+    }
+
+    .feature-card p {
+      font-size: 17px;
+      color: var(--mid-gray);
+      line-height: 1.47;
+      letter-spacing: 0.004em;
+    }
+
+    .feature-card .feature-visual {
+      margin-top: auto;
+      padding-top: var(--space-lg);
+      display: flex;
+      justify-content: center;
+    }
+
+    .feature-visual-block {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-palette {
+      display: flex;
+      gap: 4px;
+      height: 100%;
+    }
+    .visual-palette span {
+      flex: 1;
+      border-radius: 8px;
+    }
+
+    .visual-typo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      height: 100%;
+    }
+    .visual-typo .typo-line {
+      height: 8px;
+      border-radius: 4px;
+      background: var(--off-white);
+      opacity: 0.15;
+    }
+    .visual-typo .typo-line:nth-child(1) { width: 60%; height: 20px; opacity: 0.3; }
+    .visual-typo .typo-line:nth-child(2) { width: 80%; }
+    .visual-typo .typo-line:nth-child(3) { width: 45%; }
+    .visual-typo .typo-line:nth-child(4) { width: 70%; }
+
+    .visual-grid-demo {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      height: 100%;
+    }
+    .visual-grid-demo span {
+      background: rgba(0, 113, 227, 0.2);
+      border-radius: 6px;
+      border: 1px solid rgba(0, 113, 227, 0.15);
+    }
+    .visual-grid-demo span:nth-child(1) { grid-column: span 2; }
+    .visual-grid-demo span:nth-child(4) { grid-column: span 3; }
+
+    .visual-spacing {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      height: 100%;
+    }
+    .visual-spacing .space-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .visual-spacing .space-block {
+      height: 24px;
+      border-radius: 4px;
+      background: var(--purple);
+      opacity: 0.3;
+    }
+    .visual-spacing .space-gap {
+      flex: 1;
+      height: 1px;
+      border-top: 1px dashed var(--dark-gray);
+    }
+    .visual-spacing .space-label {
+      font-size: 11px;
+      color: var(--dark-gray);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    /* ============================================
+       Principles — 横スクロールカード
+       ============================================ */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    .principle-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      border: 1px solid var(--light-gray);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .principle-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .principle-number {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: var(--space-sm);
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .principle-card h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+      color: var(--near-black);
+      letter-spacing: 0em;
+    }
+
+    .principle-card .principle-en {
+      font-size: 14px;
+      color: var(--mid-gray);
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.011em;
+    }
+
+    .principle-card p {
+      font-size: 15px;
+      color: var(--dark-gray);
+      line-height: 1.5;
+      letter-spacing: 0.004em;
+    }
+
+    /* ============================================
+       Showcase — フルブリード + テキスト中央
+       ============================================ */
+    .showcase {
+      padding: var(--space-2xl) 22px;
+      background: var(--pure-black);
+      text-align: center;
+    }
+
+    .showcase-inner {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .showcase-demo {
+      margin-top: var(--space-xl);
+      background: var(--near-black);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .showcase-browser {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .browser-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .browser-dot:nth-child(1) { background: var(--red); }
+    .browser-dot:nth-child(2) { background: var(--orange); }
+    .browser-dot:nth-child(3) { background: var(--green); }
+
+    .browser-bar {
+      flex: 1;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      margin-left: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 13px;
+      color: var(--dark-gray);
+      font-family: var(--font-mono);
+    }
+
+    .showcase-content {
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      min-height: 320px;
+    }
+
+    .showcase-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: var(--space-md);
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+    }
+
+    .sidebar-item {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--mid-gray);
+      cursor: default;
+      transition: all 0.2s;
+    }
+    .sidebar-item.active {
+      background: rgba(0, 113, 227, 0.15);
+      color: var(--blue);
+    }
+
+    .showcase-preview {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+    }
+
+    .preview-block {
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .preview-block-hero {
+      height: 120px;
+      background: linear-gradient(135deg, rgba(0, 113, 227, 0.2), rgba(175, 82, 222, 0.2));
+    }
+    .preview-block-text {
+      height: 12px;
+      width: 80%;
+      margin-top: 12px;
+    }
+    .preview-block-text-short {
+      height: 12px;
+      width: 50%;
+      margin-top: 8px;
+    }
+    .preview-block-btn {
+      display: inline-block;
+      height: 32px;
+      width: 100px;
+      margin-top: 16px;
+      border-radius: 980px;
+      background: rgba(0, 113, 227, 0.3);
+    }
+
+    /* ============================================
+       Stats
+       ============================================ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    .stat-number {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.003em;
+      color: var(--near-black);
+    }
+
+    .stat-label {
+      font-size: 17px;
+      color: var(--mid-gray);
+      margin-top: var(--space-xs);
+      letter-spacing: 0.004em;
+    }
+
+    /* ============================================
+       CTA Section
+       ============================================ */
+    .cta-section {
+      padding: var(--space-3xl) 22px;
+      text-align: center;
+      background: var(--pure-black);
+    }
+
+    .cta-title {
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--off-white);
+      line-height: 1.05;
+      letter-spacing: -0.003em;
+      margin: 0 auto var(--space-md);
+      max-width: 980px;
+    }
+
+    .cta-subtitle {
+      font-size: 21px;
+      color: var(--mid-gray);
+      margin: 0 auto var(--space-lg);
+      letter-spacing: 0.011em;
+      max-width: 600px;
+    }
+
+    /* ============================================
+       Footer
+       ============================================ */
+    .footer {
+      background: var(--off-white);
+      padding: var(--space-lg) 22px;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .footer-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--mid-gray);
+      letter-spacing: 0.004em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--mid-gray);
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: var(--near-black);
+      text-decoration: none;
+    }
+
+    /* ============================================
+       Scroll Animations
+       ============================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       Responsive — Tablet
+       ============================================ */
+    @media (max-width: 1068px) {
+      .hero-title {
+        font-size: 72px;
+      }
+      .hero-subtitle {
+        font-size: 24px;
+      }
+      .section-title {
+        font-size: 40px;
+      }
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .principles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stat-number {
+        font-size: 48px;
+      }
+      .cta-title {
+        font-size: 48px;
+      }
+    }
+
+    /* ============================================
+       Responsive — Mobile
+       ============================================ */
+    @media (max-width: 735px) {
+      .hero {
+        padding: var(--space-2xl) 22px var(--space-xl);
+        min-height: auto;
+      }
+      .hero-title {
+        font-size: 48px;
+      }
+      .hero-subtitle {
+        font-size: 19px;
+      }
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .btn {
+        width: 100%;
+      }
+      .section {
+        padding: var(--space-xl) 22px;
+      }
+      .section-title {
+        font-size: 32px;
+        line-height: 1.125;
+        letter-spacing: 0.004em;
+      }
+      .section-subtitle {
+        font-size: 17px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .feature-card {
+        min-height: 300px;
+      }
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+      .showcase-content {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .stat-item {
+        padding: var(--space-md);
+      }
+      .stat-number {
+        font-size: 40px;
+      }
+      .cta-title {
+        font-size: 36px;
+      }
+      .footer-inner {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================
+       Navigation
+       ======================================== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">VibeDesign</a>
+      <ul class="nav-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="principles.html">Principles</a></li>
+        <li><a href="showcase.html">Showcase</a></li>
+        <li><a href="get-started.html">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========================================
+       Hero — ステージ照明効果（design.md #9）
+       ======================================== -->
+  <section class="hero">
+    <p class="hero-label">Introducing VibeDesign</p>
+    <h1 class="hero-title">
+      デザインを、<br><span class="gradient-text">直感で。</span>
+    </h1>
+    <p class="hero-subtitle">
+      Appleに学ぶデザインシステムで、<br>
+      誰もが美しいWebを生み出せる。
+    </p>
+    <div class="hero-cta">
+      <a href="#cta" class="btn btn-primary">無料ではじめる</a>
+      <a href="#features" class="btn btn-secondary">詳しく見る</a>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Features — 4カード（design.md #7 グリッド）
+       ======================================== -->
+  <section id="features" class="section section-dark">
+    <div class="section-inner">
+      <p class="section-label">Features</p>
+      <h2 class="section-title" style="color: var(--off-white);">デザインを、構造から変える。</h2>
+      <p class="section-subtitle">
+        カラー、タイポグラフィ、レイアウト、余白。<br>
+        4つの軸を体系化することで、デザインは再現可能になる。
+      </p>
+
+      <div class="feature-grid">
+        <!-- Card 1: Color Palette -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon feature-icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <h3>カラーパレット</h3>
+          <p>ベース7色 + アクセント7色の体系で、ライト・ダーク両モードに対応。意味のある色だけを使う。</p>
+          <div class="feature-visual">
+            <div class="feature-visual-block">
+              <div class="visual-palette">
+                <span style="background: #0071E3;"></span>
+                <span style="background: #5AC8FA;"></span>
+                <span style="background: #34C759;"></span>
+                <span style="background: #FF9500;"></span>
+                <span style="background: #AF52DE;"></span>
+                <span style="background: #FF3B30;"></span>
+                <span style="background: #1D1D1F;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Typography -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon feature-icon-purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+          </div>
+          <h3>タイポグラフィ</h3>
+          <p>SF Pro準拠のタイプスケール。96px〜12pxまでの階層を、3つのウェイトだけで構築する。</p>
+          <div class="feature-visual">
+            <div class="feature-visual-block">
+              <div class="visual-typo">
+                <div class="typo-line"></div>
+                <div class="typo-line"></div>
+                <div class="typo-line"></div>
+                <div class="typo-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Grid -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon feature-icon-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <h3>レイアウト</h3>
+          <p>12カラムグリッド、最大幅980px。フルブリード背景と狭いコンテンツ幅で高級感を演出。</p>
+          <div class="feature-visual">
+            <div class="feature-visual-block">
+              <div class="visual-grid-demo">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Spacing -->
+        <div class="feature-card fade-in">
+          <div class="feature-icon feature-icon-orange">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+          </div>
+          <h3>ホワイトスペース</h3>
+          <p>8pxグリッドに基づくスペーシングシステム。「余白こそがデザイン」という哲学を実装する。</p>
+          <div class="feature-visual">
+            <div class="feature-visual-block">
+              <div class="visual-spacing">
+                <div class="space-row">
+                  <div class="space-block" style="width: 40px;"></div>
+                  <div class="space-gap"></div>
+                  <span class="space-label">48px</span>
+                </div>
+                <div class="space-row">
+                  <div class="space-block" style="width: 60px;"></div>
+                  <div class="space-gap"></div>
+                  <span class="space-label">80px</span>
+                </div>
+                <div class="space-row">
+                  <div class="space-block" style="width: 90px;"></div>
+                  <div class="space-gap"></div>
+                  <span class="space-label">120px</span>
+                </div>
+                <div class="space-row">
+                  <div class="space-block" style="width: 130px;"></div>
+                  <div class="space-gap"></div>
+                  <span class="space-label">200px</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       4 Principles — design.md 4大原則
+       ======================================== -->
+  <section id="principles" class="section section-light-gray">
+    <div class="section-inner">
+      <p class="section-label">Principles</p>
+      <h2 class="section-title">デザインの4大原則</h2>
+      <p class="section-subtitle">
+        Robin Williams が提唱した4つの原則。<br>
+        意識するだけで、デザインの質は劇的に変わる。
+      </p>
+
+      <div class="principles-grid">
+        <div class="principle-card fade-in">
+          <div class="principle-number">01</div>
+          <h3>近接</h3>
+          <p class="principle-en">Proximity</p>
+          <p>関連する要素を近くにまとめ、無関係な要素は離す。情報の構造が視覚的に明確になる。</p>
+        </div>
+
+        <div class="principle-card fade-in">
+          <div class="principle-number">02</div>
+          <h3>整列</h3>
+          <p class="principle-en">Alignment</p>
+          <p>すべての要素を見えない線で揃える。ページ全体に一体感と秩序が生まれる。</p>
+        </div>
+
+        <div class="principle-card fade-in">
+          <div class="principle-number">03</div>
+          <h3>反復</h3>
+          <p class="principle-en">Repetition</p>
+          <p>色・フォント・パターンを繰り返し使う。ブランドとしての統一感が強まる。</p>
+        </div>
+
+        <div class="principle-card fade-in">
+          <div class="principle-number">04</div>
+          <h3>対比</h3>
+          <p class="principle-en">Contrast</p>
+          <p>異なる要素は大胆に違わせる。視覚的な階層と注目ポイントが生まれる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Showcase — ブラウザモック
+       ======================================== -->
+  <section id="showcase" class="showcase">
+    <div class="showcase-inner">
+      <p class="section-label">Showcase</p>
+      <h2 class="section-title" style="color: var(--off-white);">つくるを、見ながら。</h2>
+      <p class="section-subtitle">
+        デザインシステムに基づいたコンポーネントが、<br>
+        リアルタイムで画面に反映される。
+      </p>
+
+      <div class="showcase-demo fade-in">
+        <div class="showcase-browser">
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <div class="browser-bar">vibedesign.app</div>
+        </div>
+        <div class="showcase-content">
+          <div class="showcase-sidebar">
+            <div class="sidebar-item active">Colors</div>
+            <div class="sidebar-item">Typography</div>
+            <div class="sidebar-item">Layout</div>
+            <div class="sidebar-item">Spacing</div>
+            <div class="sidebar-item">Components</div>
+            <div class="sidebar-item">Dark Mode</div>
+          </div>
+          <div class="showcase-preview">
+            <div class="preview-block preview-block-hero"></div>
+            <div class="preview-block preview-block-text"></div>
+            <div class="preview-block preview-block-text-short"></div>
+            <div class="preview-block-btn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Stats
+       ======================================== -->
+  <section class="section" style="text-align: center;">
+    <div class="section-inner">
+      <div class="stats-grid">
+        <div class="stat-item fade-in">
+          <div class="stat-number">9</div>
+          <div class="stat-label">デザイン視点を体系化</div>
+        </div>
+        <div class="stat-item fade-in">
+          <div class="stat-number">14</div>
+          <div class="stat-label">カラートークン定義</div>
+        </div>
+        <div class="stat-item fade-in">
+          <div class="stat-number">8px</div>
+          <div class="stat-label">グリッドベースの余白設計</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       CTA
+       ======================================== -->
+  <section id="cta" class="cta-section">
+    <h2 class="cta-title fade-in">さあ、はじめよう。</h2>
+    <p class="cta-subtitle fade-in">デザインの正解は、すでにある。あとは使うだけ。</p>
+    <div class="fade-in">
+      <a href="#" class="btn btn-primary" style="font-size: 21px; padding: 16px 40px;">無料ではじめる</a>
+    </div>
+  </section>
+
+  <!-- ========================================
+       Footer
+       ======================================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text">Copyright &copy; 2026 VibeDesign. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+
+</body>
+</html>

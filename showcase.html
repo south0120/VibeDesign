@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showcase — VibeDesign</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">VibeDesign</a>
+      <ul class="nav-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="principles.html">Principles</a></li>
+        <li><a href="showcase.html" class="nav-active">Showcase</a></li>
+        <li><a href="get-started.html">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <p class="page-hero-label">Showcase</p>
+    <h1 class="page-hero-title">実例で見る、<br>デザインシステム。</h1>
+    <p class="page-hero-subtitle">
+      design.md の定義がどのように画面に反映されるか。<br>
+      ライト・ダーク、デスクトップ・モバイル、各パターンを紹介。
+    </p>
+  </section>
+
+  <!-- Showcase 1: Light Mode LP -->
+  <section class="section section-light-gray">
+    <div class="section-inner">
+      <p class="section-label">Example 01</p>
+      <h2 class="section-title">ライトモード LP</h2>
+      <p class="section-subtitle">
+        白背景 + 控えめなグレーのサーフェス。<br>
+        テキストとCTAが明確に際立つ、スタンダードな構成。
+      </p>
+
+      <div class="browser-mock fade-in">
+        <div class="browser-mock-bar">
+          <span class="mock-dot" style="background: var(--red);"></span>
+          <span class="mock-dot" style="background: var(--orange);"></span>
+          <span class="mock-dot" style="background: var(--green);"></span>
+          <div class="mock-url">vibedesign.app/light</div>
+        </div>
+        <div class="browser-mock-body mock-light">
+          <div class="mock-nav-bar">
+            <span class="mock-logo-text">Logo</span>
+            <div class="mock-nav-items">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="mock-hero-block">
+            <div class="mock-hero-title"></div>
+            <div class="mock-hero-sub"></div>
+            <div class="mock-hero-btn"></div>
+          </div>
+          <div class="mock-cards-row">
+            <div class="mock-card-item">
+              <div class="mock-card-img"></div>
+              <div class="mock-card-line"></div>
+              <div class="mock-card-line short"></div>
+            </div>
+            <div class="mock-card-item">
+              <div class="mock-card-img"></div>
+              <div class="mock-card-line"></div>
+              <div class="mock-card-line short"></div>
+            </div>
+            <div class="mock-card-item">
+              <div class="mock-card-img"></div>
+              <div class="mock-card-line"></div>
+              <div class="mock-card-line short"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase 2: Dark Mode LP -->
+  <section class="section section-dark">
+    <div class="section-inner">
+      <p class="section-label">Example 02</p>
+      <h2 class="section-title" style="color: var(--off-white);">ダークモード LP</h2>
+      <p class="section-subtitle">
+        黒背景にプロダクトが浮かぶ「ステージ照明」演出。<br>
+        Appleの象徴的なダークデザインを再現。
+      </p>
+
+      <div class="browser-mock fade-in">
+        <div class="browser-mock-bar">
+          <span class="mock-dot" style="background: var(--red);"></span>
+          <span class="mock-dot" style="background: var(--orange);"></span>
+          <span class="mock-dot" style="background: var(--green);"></span>
+          <div class="mock-url">vibedesign.app/dark</div>
+        </div>
+        <div class="browser-mock-body mock-dark">
+          <div class="mock-hero-block-dark">
+            <div class="mock-product-glow"></div>
+            <div class="mock-hero-title-dark"></div>
+            <div class="mock-hero-sub-dark"></div>
+          </div>
+          <div class="mock-features-dark">
+            <div class="mock-feature-card-dark">
+              <div class="mock-feature-icon"></div>
+              <div class="mock-card-line-dark"></div>
+              <div class="mock-card-line-dark short"></div>
+            </div>
+            <div class="mock-feature-card-dark">
+              <div class="mock-feature-icon"></div>
+              <div class="mock-card-line-dark"></div>
+              <div class="mock-card-line-dark short"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase 3: Components -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-label">Example 03</p>
+      <h2 class="section-title">コンポーネント一覧</h2>
+      <p class="section-subtitle">
+        design.md に定義された値で統一されたUIパーツ。
+      </p>
+
+      <div class="showcase-components fade-in">
+        <!-- Buttons showcase -->
+        <div class="sc-group">
+          <h3 class="sc-group-title">Buttons</h3>
+          <div class="sc-row">
+            <a href="#" class="btn btn-primary">Primary Button</a>
+            <a href="#" class="btn btn-secondary">Secondary</a>
+            <a href="#" class="btn btn-primary btn-large">Large CTA</a>
+          </div>
+        </div>
+
+        <!-- Colors showcase -->
+        <div class="sc-group">
+          <h3 class="sc-group-title">Color Tokens</h3>
+          <div class="sc-color-row">
+            <div class="sc-color"><div class="sc-color-box" style="background: var(--blue);"></div><span>Primary</span></div>
+            <div class="sc-color"><div class="sc-color-box" style="background: var(--purple);"></div><span>Secondary</span></div>
+            <div class="sc-color"><div class="sc-color-box" style="background: var(--green);"></div><span>Green</span></div>
+            <div class="sc-color"><div class="sc-color-box" style="background: var(--orange);"></div><span>Accent</span></div>
+            <div class="sc-color"><div class="sc-color-box" style="background: var(--red);"></div><span>Red</span></div>
+            <div class="sc-color"><div class="sc-color-box" style="background: var(--teal);"></div><span>Teal</span></div>
+            <div class="sc-color"><div class="sc-color-box" style="background: var(--near-black);"></div><span>Text</span></div>
+            <div class="sc-color"><div class="sc-color-box" style="background: var(--mid-gray);"></div><span>Muted</span></div>
+          </div>
+        </div>
+
+        <!-- Type Scale -->
+        <div class="sc-group">
+          <h3 class="sc-group-title">Type Scale</h3>
+          <div class="sc-type-list">
+            <div class="sc-type-item">
+              <span class="sc-type-label">H1</span>
+              <span style="font-size: 40px; font-weight: 700; letter-spacing: -0.003em;">デザインを直感で</span>
+            </div>
+            <div class="sc-type-item">
+              <span class="sc-type-label">H2</span>
+              <span style="font-size: 28px; font-weight: 600;">セクション見出し</span>
+            </div>
+            <div class="sc-type-item">
+              <span class="sc-type-label">H3</span>
+              <span style="font-size: 21px; font-weight: 600;">サブ見出し</span>
+            </div>
+            <div class="sc-type-item">
+              <span class="sc-type-label">Body</span>
+              <span style="font-size: 17px; font-weight: 400;">本文テキスト。デザインは構造から変わる。</span>
+            </div>
+            <div class="sc-type-item">
+              <span class="sc-type-label">Small</span>
+              <span style="font-size: 14px; font-weight: 400; color: var(--mid-gray);">補足テキスト・キャプション</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spacing -->
+        <div class="sc-group">
+          <h3 class="sc-group-title">Spacing Scale</h3>
+          <div class="sc-spacing-list">
+            <div class="sc-spacing-item"><div class="sc-spacing-bar" style="width: 8px;"></div><span>8px — xs</span></div>
+            <div class="sc-spacing-item"><div class="sc-spacing-bar" style="width: 16px;"></div><span>16px — sm</span></div>
+            <div class="sc-spacing-item"><div class="sc-spacing-bar" style="width: 24px;"></div><span>24px — md</span></div>
+            <div class="sc-spacing-item"><div class="sc-spacing-bar" style="width: 48px;"></div><span>48px — lg</span></div>
+            <div class="sc-spacing-item"><div class="sc-spacing-bar" style="width: 80px;"></div><span>80px — xl</span></div>
+            <div class="sc-spacing-item"><div class="sc-spacing-bar" style="width: 120px;"></div><span>120px — 2xl</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-cta">
+    <h2 class="cta-title fade-in">あなたのプロジェクトで<br>試してみよう。</h2>
+    <p class="cta-subtitle fade-in">design.md をコピーして、すぐに始められる。</p>
+    <div class="fade-in" style="text-align: center;">
+      <a href="get-started.html" class="btn btn-primary btn-large">はじめる</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text">Copyright &copy; 2026 VibeDesign. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

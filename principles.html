@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principles — VibeDesign</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">VibeDesign</a>
+      <ul class="nav-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="principles.html" class="nav-active">Principles</a></li>
+        <li><a href="showcase.html">Showcase</a></li>
+        <li><a href="get-started.html">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <p class="page-hero-label">Principles</p>
+    <h1 class="page-hero-title">デザインの、<br>原則を知る。</h1>
+    <p class="page-hero-subtitle">
+      4つの原則と5段階のヒエラルキー。<br>
+      理論を知ることで、デザインは再現可能になる。
+    </p>
+  </section>
+
+  <!-- 4 Principles Detail -->
+  <section class="section section-light-gray">
+    <div class="section-inner">
+      <p class="section-label">The 4 Principles</p>
+      <h2 class="section-title">C-R-A-P</h2>
+      <p class="section-subtitle">
+        Contrast, Repetition, Alignment, Proximity.<br>
+        Robin Williams が提唱した、デザインの4大原則。
+      </p>
+    </div>
+  </section>
+
+  <!-- Principle 1: Proximity -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="principle-detail fade-in">
+        <div class="principle-detail-header">
+          <span class="principle-detail-number">01</span>
+          <div>
+            <h2 class="principle-detail-title">近接</h2>
+            <p class="principle-detail-en">Proximity</p>
+          </div>
+        </div>
+        <div class="principle-detail-body">
+          <div class="principle-detail-text">
+            <p>関連する要素を近くにまとめ、関連しない要素は離す。情報のグループが視覚的に明確になり、読み手が構造を瞬時に把握できる。</p>
+            <ul class="principle-rules">
+              <li>関連する情報同士の余白を狭くする</li>
+              <li>無関係な情報との間には十分な余白を取る</li>
+              <li>グループの数は少なくまとめる</li>
+            </ul>
+          </div>
+          <div class="principle-detail-demo">
+            <div class="proximity-demo">
+              <div class="proximity-bad">
+                <span class="demo-badge demo-badge-dont">Don't</span>
+                <div class="proximity-item">Title</div>
+                <div class="proximity-item" style="margin-top: 20px;">Description</div>
+                <div class="proximity-item" style="margin-top: 20px;">Button</div>
+                <div class="proximity-item" style="margin-top: 20px;">Title</div>
+                <div class="proximity-item" style="margin-top: 20px;">Description</div>
+              </div>
+              <div class="proximity-good">
+                <span class="demo-badge demo-badge-do">Do</span>
+                <div class="proximity-group">
+                  <div class="proximity-item">Title</div>
+                  <div class="proximity-item" style="margin-top: 4px;">Description</div>
+                  <div class="proximity-item" style="margin-top: 4px;">Button</div>
+                </div>
+                <div class="proximity-group" style="margin-top: 32px;">
+                  <div class="proximity-item">Title</div>
+                  <div class="proximity-item" style="margin-top: 4px;">Description</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principle 2: Alignment -->
+  <section class="section section-dark">
+    <div class="section-inner">
+      <div class="principle-detail fade-in">
+        <div class="principle-detail-header">
+          <span class="principle-detail-number">02</span>
+          <div>
+            <h2 class="principle-detail-title" style="color: var(--off-white);">整列</h2>
+            <p class="principle-detail-en">Alignment</p>
+          </div>
+        </div>
+        <div class="principle-detail-body">
+          <div class="principle-detail-text" style="color: var(--off-white);">
+            <p>すべての要素を意図的に配置し、見えない線で揃える。ページ全体に一体感と秩序が生まれる。</p>
+            <ul class="principle-rules">
+              <li>ページ上のすべての要素に視覚的なつながりを持たせる</li>
+              <li>揃え方（左・右・中央）を混在させない</li>
+              <li>中央揃えは単調になりやすいので注意する</li>
+            </ul>
+          </div>
+          <div class="principle-detail-demo">
+            <div class="alignment-demo">
+              <div class="alignment-bad">
+                <span class="demo-badge demo-badge-dont">Don't</span>
+                <div class="align-line" style="width: 60%; margin: 0 auto;"></div>
+                <div class="align-line" style="width: 80%;"></div>
+                <div class="align-line" style="width: 50%; margin-left: auto;"></div>
+                <div class="align-line" style="width: 70%; margin: 0 20%;"></div>
+              </div>
+              <div class="alignment-good">
+                <span class="demo-badge demo-badge-do">Do</span>
+                <div class="align-line" style="width: 60%;"></div>
+                <div class="align-line" style="width: 80%;"></div>
+                <div class="align-line" style="width: 50%;"></div>
+                <div class="align-line" style="width: 70%;"></div>
+                <div class="align-guide"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principle 3: Repetition -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="principle-detail fade-in">
+        <div class="principle-detail-header">
+          <span class="principle-detail-number">03</span>
+          <div>
+            <h2 class="principle-detail-title">反復</h2>
+            <p class="principle-detail-en">Repetition</p>
+          </div>
+        </div>
+        <div class="principle-detail-body">
+          <div class="principle-detail-text">
+            <p>色・フォント・装飾・レイアウトパターンなどのデザイン要素を繰り返し使う。一貫性が生まれ、ブランドとしての統一感が強まる。</p>
+            <ul class="principle-rules">
+              <li>見出しのスタイル、色、アイコンなどを統一する</li>
+              <li>繰り返しによって「このデザインらしさ」を作る</li>
+              <li>ただし単調にならないようバリエーションも意識する</li>
+            </ul>
+          </div>
+          <div class="principle-detail-demo">
+            <div class="repetition-demo">
+              <div class="rep-card">
+                <div class="rep-card-icon" style="background: rgba(0,113,227,0.15); color: var(--blue);">A</div>
+                <div class="rep-card-line"></div>
+                <div class="rep-card-line short"></div>
+              </div>
+              <div class="rep-card">
+                <div class="rep-card-icon" style="background: rgba(0,113,227,0.15); color: var(--blue);">B</div>
+                <div class="rep-card-line"></div>
+                <div class="rep-card-line short"></div>
+              </div>
+              <div class="rep-card">
+                <div class="rep-card-icon" style="background: rgba(0,113,227,0.15); color: var(--blue);">C</div>
+                <div class="rep-card-line"></div>
+                <div class="rep-card-line short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principle 4: Contrast -->
+  <section class="section section-dark">
+    <div class="section-inner">
+      <div class="principle-detail fade-in">
+        <div class="principle-detail-header">
+          <span class="principle-detail-number">04</span>
+          <div>
+            <h2 class="principle-detail-title" style="color: var(--off-white);">対比</h2>
+            <p class="principle-detail-en">Contrast</p>
+          </div>
+        </div>
+        <div class="principle-detail-body">
+          <div class="principle-detail-text" style="color: var(--off-white);">
+            <p>異なる要素をはっきり違わせる。中途半端に似せるのではなく、思い切って差をつけることで視覚的な階層と注目ポイントが生まれる。</p>
+            <ul class="principle-rules">
+              <li>似た要素同士を少しだけ変えるのは避ける</li>
+              <li>やるなら大胆に違いをつける</li>
+              <li>フォントサイズ、ウェイト、色、余白などで差をつける</li>
+            </ul>
+          </div>
+          <div class="principle-detail-demo">
+            <div class="contrast-demo">
+              <div class="contrast-bad">
+                <span class="demo-badge demo-badge-dont">Don't</span>
+                <p style="font-size: 18px; font-weight: 500; color: #666; margin-bottom: 8px;">Heading</p>
+                <p style="font-size: 16px; font-weight: 400; color: #888;">Body text here</p>
+              </div>
+              <div class="contrast-good">
+                <span class="demo-badge demo-badge-do">Do</span>
+                <p style="font-size: 32px; font-weight: 700; color: var(--off-white); margin-bottom: 8px;">Heading</p>
+                <p style="font-size: 15px; font-weight: 400; color: var(--mid-gray);">Body text here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Hierarchy -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-label">Visual Hierarchy</p>
+      <h2 class="section-title">5段階の視覚的優先順位</h2>
+      <p class="section-subtitle">
+        サイズ・色・余白で、情報の重要度を直感的に伝える。
+      </p>
+
+      <div class="hierarchy-demo fade-in">
+        <div class="hierarchy-level">
+          <span class="hierarchy-tag">Level 1</span>
+          <p class="hierarchy-l1">Hero</p>
+          <span class="hierarchy-spec">96px / Bold / Dark BG</span>
+        </div>
+        <div class="hierarchy-level">
+          <span class="hierarchy-tag">Level 2</span>
+          <p class="hierarchy-l2">Section Title</p>
+          <span class="hierarchy-spec">48px / SemiBold / Center</span>
+        </div>
+        <div class="hierarchy-level">
+          <span class="hierarchy-tag">Level 3</span>
+          <p class="hierarchy-l3">Body &amp; Subtitle</p>
+          <span class="hierarchy-spec">21px / Regular</span>
+        </div>
+        <div class="hierarchy-level">
+          <span class="hierarchy-tag">Level 4</span>
+          <p class="hierarchy-l4">CTA Link</p>
+          <span class="hierarchy-spec">17px / Blue #0071E3</span>
+        </div>
+        <div class="hierarchy-level">
+          <span class="hierarchy-tag">Level 5</span>
+          <p class="hierarchy-l5">Nav &amp; Footer</p>
+          <span class="hierarchy-spec">12px / Gray #86868B</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-cta">
+    <h2 class="cta-title fade-in">原則を理解したら、<br>実践しよう。</h2>
+    <p class="cta-subtitle fade-in">デザインの正解は、すでにある。</p>
+    <div class="fade-in" style="text-align: center;">
+      <a href="get-started.html" class="btn btn-primary btn-large">はじめる</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text">Copyright &copy; 2026 VibeDesign. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

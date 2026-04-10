@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started — VibeDesign</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">VibeDesign</a>
+      <ul class="nav-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="principles.html">Principles</a></li>
+        <li><a href="showcase.html">Showcase</a></li>
+        <li><a href="get-started.html" class="nav-active">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <p class="page-hero-label">Get Started</p>
+    <h1 class="page-hero-title">3ステップで、<br>はじめよう。</h1>
+    <p class="page-hero-subtitle">
+      design.md をプロジェクトに置くだけ。<br>
+      デザインの一貫性が、すぐに手に入る。
+    </p>
+  </section>
+
+  <!-- Step 1 -->
+  <section class="section section-light-gray">
+    <div class="section-inner">
+      <div class="step-detail fade-in">
+        <div class="step-number-large">01</div>
+        <h2 class="step-title">design.md をコピーする</h2>
+        <p class="step-description">
+          テンプレートをダウンロードして、プロジェクトのルートに配置する。<br>
+          Claude Code が自動で読み込み、デザインシステムに準拠したコードを生成する。
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">Terminal</span>
+          </div>
+          <pre class="code-content"><code><span class="code-comment"># プロジェクトのルートにコピー</span>
+cp DESIGN_md_template.md your-project/DESIGN.md
+
+<span class="code-comment"># 値を自分のプロジェクト用に書き換える</span>
+vi your-project/DESIGN.md</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 2 -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="step-detail fade-in">
+        <div class="step-number-large">02</div>
+        <h2 class="step-title">カラーとフォントを設定する</h2>
+        <p class="step-description">
+          design.md の Color Palette と Typography Rules を、<br>
+          自分のブランドに合わせて書き換える。わからない場合はデフォルト値をそのまま使える。
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">DESIGN.md</span>
+          </div>
+          <pre class="code-content"><code><span class="code-comment">## Color Palette & Roles</span>
+
+Primary:      <span class="code-highlight">#0071E3</span>   （メインCTA・リンク）
+Secondary:    <span class="code-highlight">#AF52DE</span>   （サブアクション・タグ）
+Background:   <span class="code-highlight">#FFFFFF</span>   （ページ背景）
+Surface:      <span class="code-highlight">#F5F5F7</span>   （カード・セクション背景）
+Text:         <span class="code-highlight">#1D1D1F</span>   （本文テキスト）
+Text-muted:   <span class="code-highlight">#86868B</span>   （補足テキスト）
+Accent:       <span class="code-highlight">#FF9500</span>   （強調・警告）
+Border:       <span class="code-highlight">#E8E8ED</span>   （区切り線）</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 3 -->
+  <section class="section section-light-gray">
+    <div class="section-inner">
+      <div class="step-detail fade-in">
+        <div class="step-number-large">03</div>
+        <h2 class="step-title">Claude Code でビルドする</h2>
+        <p class="step-description">
+          DESIGN.md をプロジェクトルートに置いた状態で Claude Code を起動。<br>
+          デザインシステムに準拠したHTML/CSS/コンポーネントが自動生成される。
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">Terminal</span>
+          </div>
+          <pre class="code-content"><code><span class="code-comment"># Claude Code を起動</span>
+claude
+
+<span class="code-comment"># デザインシステムに基づいてLPを生成</span>
+&gt; design.md を使ってLPを作成して
+
+<span class="code-comment"># コンポーネントを個別に生成</span>
+&gt; design.md に基づいてヘッダーコンポーネントを作って</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Template Preview -->
+  <section class="section section-dark">
+    <div class="section-inner">
+      <p class="section-label">Template</p>
+      <h2 class="section-title" style="color: var(--off-white);">テンプレートの構成</h2>
+      <p class="section-subtitle">
+        design.md に含まれる7つのセクション。<br>
+        すべてのデザイン判断をカバーする。
+      </p>
+
+      <div class="template-grid fade-in">
+        <div class="template-item">
+          <span class="template-icon">1</span>
+          <h3>Project Overview</h3>
+          <p>プロジェクト名、世界観、ターゲットユーザー</p>
+        </div>
+        <div class="template-item">
+          <span class="template-icon">2</span>
+          <h3>Color Palette</h3>
+          <p>8色のカラーロールとコントラスト比</p>
+        </div>
+        <div class="template-item">
+          <span class="template-icon">3</span>
+          <h3>Typography</h3>
+          <p>フォント、サイズ、ウェイト、行間</p>
+        </div>
+        <div class="template-item">
+          <span class="template-icon">4</span>
+          <h3>Components</h3>
+          <p>ボタン、カード、インプット、ナビ</p>
+        </div>
+        <div class="template-item">
+          <span class="template-icon">5</span>
+          <h3>Layout</h3>
+          <p>グリッド、余白、コンテナ幅</p>
+        </div>
+        <div class="template-item">
+          <span class="template-icon">6</span>
+          <h3>Visual Hierarchy</h3>
+          <p>5段階の視覚的優先順位</p>
+        </div>
+        <div class="template-item">
+          <span class="template-icon">7</span>
+          <h3>Do's and Don'ts</h3>
+          <p>守るべきルールと禁止事項</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">よくある質問</h2>
+
+      <div class="faq-list">
+        <div class="faq-item fade-in">
+          <h3 class="faq-question">design.md とは何ですか?</h3>
+          <p class="faq-answer">プロジェクトのデザインルールを定義するMarkdownファイルです。カラー、フォント、余白、コンポーネントスタイルなど、デザインに関するすべての判断基準を1ファイルにまとめます。</p>
+        </div>
+        <div class="faq-item fade-in">
+          <h3 class="faq-question">デザインの知識がなくても使えますか?</h3>
+          <p class="faq-answer">はい。テンプレートにはデフォルト値が用意されており、そのまま使うだけで一貫性のあるデザインが実現できます。カスタマイズは後からいつでも可能です。</p>
+        </div>
+        <div class="faq-item fade-in">
+          <h3 class="faq-question">どのフレームワークで使えますか?</h3>
+          <p class="faq-answer">design.md はフレームワークに依存しません。HTML/CSS、React、Next.js、Vue、Svelte など、あらゆるプロジェクトで使用できます。</p>
+        </div>
+        <div class="faq-item fade-in">
+          <h3 class="faq-question">Appleのデザインでなければダメですか?</h3>
+          <p class="faq-answer">いいえ。テンプレートの値を書き換えることで、どんなブランドやスタイルにも適応できます。Apple風のデフォルト値は、あくまで出発点です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-cta">
+    <h2 class="cta-title fade-in">今すぐ始めよう。</h2>
+    <p class="cta-subtitle fade-in">design.md ひとつで、デザインが変わる。</p>
+    <div class="fade-in" style="text-align: center;">
+      <a href="#" class="btn btn-primary btn-large">テンプレートをダウンロード</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text">Copyright &copy; 2026 VibeDesign. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
