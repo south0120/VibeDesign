@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — VibeDesign</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ============================================
+       Gallery Page Specific Styles
+       ============================================ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    .gallery-card {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--light-gray);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-preview {
+      height: 180px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .gallery-preview-inner {
+      width: 80%;
+      height: 70%;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px;
+    }
+
+    .preview-title-bar {
+      width: 50%;
+      height: 8px;
+      border-radius: 4px;
+      opacity: 0.8;
+    }
+
+    .preview-text-bar {
+      width: 70%;
+      height: 5px;
+      border-radius: 3px;
+      opacity: 0.3;
+    }
+
+    .preview-btn-bar {
+      width: 30%;
+      height: 12px;
+      border-radius: 980px;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+
+    .gallery-info {
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .gallery-card-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--near-black);
+      line-height: 1.3;
+    }
+
+    .gallery-card-vibe {
+      font-size: 14px;
+      color: var(--mid-gray);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .gallery-colors {
+      display: flex;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .gallery-color-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 1px var(--light-gray);
+    }
+
+    .gallery-actions {
+      padding: 0 var(--space-md) var(--space-md);
+      display: flex;
+      gap: 8px;
+    }
+
+    .gallery-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: var(--font-primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .gallery-btn-download {
+      background: var(--blue);
+      color: var(--white);
+    }
+    .gallery-btn-download:hover {
+      background: var(--blue-hover);
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .gallery-btn-preview {
+      background: var(--off-white);
+      color: var(--near-black);
+      border: 1px solid var(--light-gray);
+    }
+    .gallery-btn-preview:hover {
+      background: var(--light-gray);
+      text-decoration: none;
+      color: var(--near-black);
+    }
+
+    /* Filter Tags */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .filter-tag {
+      padding: 8px 18px;
+      border-radius: 980px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--off-white);
+      color: var(--dark-gray);
+      border: 1px solid var(--light-gray);
+      font-family: var(--font-primary);
+    }
+
+    .filter-tag:hover,
+    .filter-tag.active {
+      background: var(--near-black);
+      color: var(--white);
+      border-color: var(--near-black);
+    }
+
+    /* Stats bar */
+    .gallery-stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .gallery-stat {
+      text-align: center;
+    }
+
+    .gallery-stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--near-black);
+      letter-spacing: -0.003em;
+    }
+
+    .gallery-stat-label {
+      font-size: 14px;
+      color: var(--mid-gray);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-md) var(--space-md) 0;
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      border-radius: 20px 20px 0 0;
+      z-index: 1;
+    }
+
+    .modal-title {
+      font-size: 21px;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: var(--off-white);
+      color: var(--dark-gray);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover {
+      background: var(--light-gray);
+    }
+
+    .modal-body {
+      padding: var(--space-md);
+    }
+
+    .modal-body pre {
+      background: var(--near-black);
+      color: var(--off-white);
+      padding: var(--space-md);
+      border-radius: 12px;
+      font-size: 13px;
+      font-family: var(--font-mono);
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* Responsive */
+    @media (max-width: 1068px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 735px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-stats {
+        gap: var(--space-md);
+      }
+      .gallery-stat-number {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">VibeDesign</a>
+      <ul class="nav-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="gallery.html" class="nav-active">Gallery</a></li>
+        <li><a href="principles.html">Principles</a></li>
+        <li><a href="get-started.html">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <p class="page-hero-label">Gallery</p>
+    <h1 class="page-hero-title">20のデザイン、<br>ひとつ選ぶだけ。</h1>
+    <p class="page-hero-subtitle">
+      世界のおしゃれなWebサイトを参考にした design.md コレクション。<br>
+      ダウンロードして、すぐにプロジェクトで使える。
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section">
+    <div class="section-inner" style="max-width: 1100px;">
+
+      <!-- Stats -->
+      <div class="gallery-stats fade-in">
+        <div class="gallery-stat">
+          <div class="gallery-stat-number">20</div>
+          <div class="gallery-stat-label">デザインテンプレート</div>
+        </div>
+        <div class="gallery-stat">
+          <div class="gallery-stat-number">7</div>
+          <div class="gallery-stat-label">カテゴリー</div>
+        </div>
+        <div class="gallery-stat">
+          <div class="gallery-stat-number">160+</div>
+          <div class="gallery-stat-label">カラートークン定義</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-tag active" data-filter="all">All</button>
+        <button class="filter-tag" data-filter="dark">Dark Mode</button>
+        <button class="filter-tag" data-filter="light">Light Mode</button>
+        <button class="filter-tag" data-filter="dev">Developer</button>
+        <button class="filter-tag" data-filter="creative">Creative</button>
+        <button class="filter-tag" data-filter="brand">Brand</button>
+        <button class="filter-tag" data-filter="saas">SaaS</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Cards are generated by JS below -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-cta">
+    <h2 class="cta-title fade-in">カスタマイズも自由自在。</h2>
+    <p class="cta-subtitle fade-in">テンプレートの値を書き換えるだけで、あなただけのデザインシステムに。</p>
+    <div class="fade-in" style="text-align: center;">
+      <a href="get-started.html" class="btn btn-primary btn-large">使い方を見る →</a>
+    </div>
+  </section>
+
+  <!-- Page Navigation -->
+  <nav class="page-nav">
+    <a href="features.html" class="page-nav-item prev">
+      <span class="page-nav-dir">← Prev</span>
+      <span class="page-nav-title">Features</span>
+    </a>
+    <a href="principles.html" class="page-nav-item next">
+      <span class="page-nav-dir">Next →</span>
+      <span class="page-nav-title">Principles</span>
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text">Copyright &copy; 2026 VibeDesign. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Preview Modal -->
+  <div class="modal-overlay" id="previewModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Preview</h3>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <pre id="modalContent">Loading...</pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Gallery data — 20 design.md templates
+    const templates = [
+      { id: "01-stripe", name: "Stripe", title: "Stripe風 — FinTech クリーンデザイン", vibe: "クリーンで信頼感のあるフィンテック。洗練されたグラデーションと広い余白。", primary: "#635BFF", bg: "#FFFFFF", text: "#0A2540", surface: "#F6F9FC", accent: "#00D4FF", tags: ["light", "saas"] },
+      { id: "02-linear", name: "Linear", title: "Linear風 — プロダクティビティツール", vibe: "ダークモードベースのシャープなUI。スピードと精密さを感じるデザイン。", primary: "#5E6AD2", bg: "#000000", text: "#EEEEEE", surface: "#1A1A2E", accent: "#6C7EE0", tags: ["dark", "dev", "saas"] },
+      { id: "03-notion", name: "Notion", title: "Notion風 — ミニマル・コンテンツファースト", vibe: "余計な装飾を排除した、コンテンツが主役のミニマルデザイン。", primary: "#000000", bg: "#FFFFFF", text: "#37352F", surface: "#F7F6F3", accent: "#EB5757", tags: ["light", "saas"] },
+      { id: "04-vercel", name: "Vercel", title: "Vercel風 — モノクロ・デベロッパー", vibe: "黒と白のコントラストが生む、研ぎ澄まされたデベロッパー体験。", primary: "#000000", bg: "#000000", text: "#EDEDED", surface: "#111111", accent: "#0070F3", tags: ["dark", "dev"] },
+      { id: "05-spotify", name: "Spotify", title: "Spotify風 — ダーク×グリーン", vibe: "ダークな空間にグリーンが映える、没入型エンターテインメント。", primary: "#1DB954", bg: "#121212", text: "#FFFFFF", surface: "#181818", accent: "#1ED760", tags: ["dark", "creative"] },
+      { id: "06-airbnb", name: "Airbnb", title: "Airbnb風 — 温かみのあるホスピタリティ", vibe: "旅の期待感を演出する、温かくフレンドリーなデザイン。", primary: "#FF385C", bg: "#FFFFFF", text: "#222222", surface: "#F7F7F7", accent: "#00A699", tags: ["light", "brand"] },
+      { id: "07-dribbble", name: "Dribbble", title: "Dribbble風 — クリエイティブ・ポートフォリオ", vibe: "作品が映えるギャラリー型。ピンクのアクセントが個性を主張。", primary: "#EA4C89", bg: "#FFFFFF", text: "#0D0C22", surface: "#F8F7F4", accent: "#FFD100", tags: ["light", "creative"] },
+      { id: "08-figma", name: "Figma", title: "Figma風 — カラフル・フレンドリー", vibe: "カラフルで遊び心のある、親しみやすいデザインツール体験。", primary: "#A259FF", bg: "#FFFFFF", text: "#1E1E1E", surface: "#F5F5F5", accent: "#0ACF83", tags: ["light", "creative", "saas"] },
+      { id: "09-github", name: "GitHub", title: "GitHub風 — デベロッパープラットフォーム", vibe: "コードが読みやすいダークUI。グリーンのアクションカラーが直感的。", primary: "#238636", bg: "#0D1117", text: "#E6EDF3", surface: "#161B22", accent: "#58A6FF", tags: ["dark", "dev"] },
+      { id: "10-monopo", name: "monopo", title: "monopo風 — 日本のクリエイティブエージェンシー", vibe: "極限まで削ぎ落としたモノクロ。タイポグラフィだけで語るデザイン。", primary: "#000000", bg: "#FFFFFF", text: "#000000", surface: "#F5F5F5", accent: "#FF0000", tags: ["light", "creative", "brand"] },
+      { id: "11-muji", name: "MUJI", title: "無印良品風 — 究極のミニマリズム", vibe: "素材感と余白が語る、引き算の美学。「これでいい」のデザイン。", primary: "#B52A2A", bg: "#FFFFFF", text: "#333333", surface: "#F5F1EB", accent: "#8B7355", tags: ["light", "brand"] },
+      { id: "12-awwwards", name: "Awwwards", title: "Awwwards風 — エクスペリメンタル", vibe: "実験的で大胆なレイアウト。デザインの限界を押し広げる。", primary: "#2D2D2D", bg: "#F5F5F0", text: "#1A1A1A", surface: "#EAEAE5", accent: "#FF3C00", tags: ["light", "creative"] },
+      { id: "13-arc", name: "Arc", title: "Arc Browser風 — グラデーション×カラフル", vibe: "グラデーションが織りなす未来的なブラウザUI。遊び心と機能美の融合。", primary: "#6C5CE7", bg: "#1A1625", text: "#FFFFFF", surface: "#2D2640", accent: "#FD79A8", tags: ["dark", "creative"] },
+      { id: "14-raycast", name: "Raycast", title: "Raycast風 — macOSネイティブ", vibe: "macOSに溶け込むような、洗練されたユーティリティデザイン。", primary: "#FF6363", bg: "#171717", text: "#EEEEEE", surface: "#222222", accent: "#FBBF24", tags: ["dark", "dev"] },
+      { id: "15-framer", name: "Framer", title: "Framer風 — ボールド・クリエイティブ", vibe: "太く大胆なタイポグラフィ。デザインの力を最大限に見せつける。", primary: "#0055FF", bg: "#000000", text: "#FFFFFF", surface: "#111111", accent: "#FF0080", tags: ["dark", "creative", "saas"] },
+      { id: "16-supabase", name: "Supabase", title: "Supabase風 — ダーク×グリーンBaaS", vibe: "開発者に寄り添うダークUI。グリーンがコードの成功を象徴する。", primary: "#3ECF8E", bg: "#1C1C1C", text: "#EDEDED", surface: "#2A2A2A", accent: "#6EE7B7", tags: ["dark", "dev", "saas"] },
+      { id: "17-aesop", name: "Aesop", title: "Aesop風 — 高級ビューティブランド", vibe: "紙のような質感。上質さと静謐さが同居する、大人のデザイン。", primary: "#252525", bg: "#FFFEF2", text: "#252525", surface: "#F2EDE3", accent: "#8B6914", tags: ["light", "brand"] },
+      { id: "18-medium", name: "Medium", title: "Medium風 — リーディング最適化", vibe: "読むことに集中できる、究極の可読性デザイン。セリフ体の美しさ。", primary: "#1A8917", bg: "#FFFFFF", text: "#242424", surface: "#F7F4ED", accent: "#FFC017", tags: ["light", "saas"] },
+      { id: "19-twitch", name: "Twitch", title: "Twitch風 — パープル×ライブ", vibe: "ライブの熱量を感じるダークUI。パープルがコミュニティを象徴する。", primary: "#9146FF", bg: "#0E0E10", text: "#EFEFF1", surface: "#18181B", accent: "#FF7A00", tags: ["dark", "creative"] },
+      { id: "20-wise", name: "Wise", title: "Wise風 — フレンドリー金融", vibe: "グリーンの安心感。複雑な金融をシンプルに見せるフレンドリーデザイン。", primary: "#9FE870", bg: "#FFFFFF", text: "#2E2E2E", surface: "#F2F5F3", accent: "#163300", tags: ["light", "brand", "saas"] }
+    ];
+
+    // Render gallery cards
+    function renderGallery(filter = 'all') {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+
+      const filtered = filter === 'all'
+        ? templates
+        : templates.filter(t => t.tags.includes(filter));
+
+      filtered.forEach(t => {
+        const isDark = t.tags.includes('dark');
+        const card = document.createElement('div');
+        card.className = 'gallery-card fade-in visible';
+        card.innerHTML = `
+          <div class="gallery-preview" style="background: ${t.bg};">
+            <div class="gallery-preview-inner" style="background: ${t.surface};">
+              <div class="preview-title-bar" style="background: ${t.text};"></div>
+              <div class="preview-text-bar" style="background: ${t.text};"></div>
+              <div class="preview-text-bar" style="background: ${t.text}; width: 50%;"></div>
+              <div class="preview-btn-bar" style="background: ${t.primary};"></div>
+            </div>
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-card-title">${t.title}</div>
+            <div class="gallery-card-vibe">${t.vibe}</div>
+            <div class="gallery-colors">
+              <div class="gallery-color-dot" style="background: ${t.primary};"></div>
+              <div class="gallery-color-dot" style="background: ${t.bg};"></div>
+              <div class="gallery-color-dot" style="background: ${t.text};"></div>
+              <div class="gallery-color-dot" style="background: ${t.surface};"></div>
+              <div class="gallery-color-dot" style="background: ${t.accent};"></div>
+            </div>
+          </div>
+          <div class="gallery-actions">
+            <a href="gallery/${t.id}.md" download class="gallery-btn gallery-btn-download">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </a>
+            <button class="gallery-btn gallery-btn-preview" onclick="previewFile('${t.id}', '${t.title}')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Preview
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter logic
+    document.getElementById('filterBar').addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-tag')) {
+        document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        renderGallery(e.target.dataset.filter);
+      }
+    });
+
+    // Preview modal
+    const modal = document.getElementById('previewModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+    const modalClose = document.getElementById('modalClose');
+
+    async function previewFile(id, title) {
+      modalTitle.textContent = title;
+      modalContent.textContent = 'Loading...';
+      modal.classList.add('open');
+
+      try {
+        const res = await fetch(`gallery/${id}.md`);
+        if (!res.ok) throw new Error('File not found');
+        const text = await res.text();
+        modalContent.textContent = text;
+      } catch (e) {
+        modalContent.textContent = 'Failed to load file. Please download instead.';
+      }
+    }
+
+    modalClose.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') modal.classList.remove('open');
+    });
+
+    // Initial render
+    renderGallery();
+  </script>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
