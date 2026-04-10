@@ -3,142 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VibeDesign — デザインを、直感で。</title>
+  <title>DESIGN.md — AIエージェント時代のデザイン再現手法</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     /* ============================================
-       CSS Variables — design.md カラーパレット準拠
+       Top Page Specific Styles
        ============================================ */
-    :root {
-      /* Base Colors */
-      --white: #FFFFFF;
-      --off-white: #F5F5F7;
-      --light-gray: #E8E8ED;
-      --mid-gray: #86868B;
-      --dark-gray: #424245;
-      --near-black: #1D1D1F;
-      --pure-black: #000000;
 
-      /* Accent Colors */
-      --blue: #0071E3;
-      --blue-hover: #0077ED;
-      --green: #34C759;
-      --orange: #FF9500;
-      --red: #FF3B30;
-      --purple: #AF52DE;
-      --teal: #5AC8FA;
-
-      /* Spacing Scale (8px grid) */
-      --space-xs: 8px;
-      --space-sm: 16px;
-      --space-md: 24px;
-      --space-lg: 48px;
-      --space-xl: 80px;
-      --space-2xl: 120px;
-      --space-3xl: 200px;
-
-      /* Typography */
-      --font-primary: "SF Pro Display", "SF Pro Icons", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      --font-mono: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
-    }
-
-    /* ============================================
-       Reset & Base
-       ============================================ */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      font-size: 16px;
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      font-family: var(--font-primary);
-      color: var(--near-black);
-      background: var(--white);
-      line-height: 1.47;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: var(--blue);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    a:hover {
-      color: var(--blue-hover);
-      text-decoration: underline;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ============================================
-       Navigation — 44px sticky, 控えめな存在感
-       ============================================ */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 48px;
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 1px solid var(--light-gray);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .nav-inner {
-      width: 100%;
-      max-width: 980px;
-      padding: 0 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-logo {
-      font-size: 21px;
-      font-weight: 600;
-      color: var(--near-black);
-      letter-spacing: -0.003em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: var(--space-md);
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 12px;
-      color: var(--near-black);
-      opacity: 0.8;
-      transition: opacity 0.2s ease;
-      text-decoration: none;
-    }
-    .nav-links a:hover {
-      opacity: 1;
-      text-decoration: none;
-    }
-
-    /* ============================================
-       Hero Section — ステージ照明効果
-       ============================================ */
-    .hero {
+    /* Hero */
+    .top-hero {
       min-height: 100vh;
       background: var(--pure-black);
       display: flex;
@@ -146,710 +19,421 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: var(--space-3xl) 22px var(--space-2xl);
+      padding: 160px 22px 120px;
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
+    .top-hero::before {
       content: '';
       position: absolute;
-      top: 50%;
+      top: 30%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(0, 113, 227, 0.15) 0%, transparent 70%);
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    .hero-label {
-      font-size: 17px;
-      font-weight: 400;
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 980px;
+      font-size: 14px;
       color: var(--mid-gray);
-      margin-bottom: var(--space-sm);
-      letter-spacing: 0.011em;
-      text-align: center;
-      width: 100%;
+      margin-bottom: 40px;
+      letter-spacing: 0.02em;
     }
 
-    .hero-title {
-      font-size: 96px;
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .top-hero h1 {
+      font-size: 80px;
       font-weight: 700;
       color: var(--off-white);
       line-height: 1.05;
-      letter-spacing: -0.003em;
-      margin-bottom: var(--space-md);
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      width: 100%;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+      max-width: 900px;
     }
 
-    .hero-title .gradient-text {
-      background: linear-gradient(135deg, var(--blue), var(--teal), var(--purple));
+    .top-hero h1 .em {
+      background: linear-gradient(135deg, #667EEA, #764BA2, #F093FB);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .hero-subtitle {
-      font-size: 28px;
-      font-weight: 400;
-      color: var(--mid-gray);
-      line-height: 1.25;
-      max-width: 600px;
-      margin: 0 auto var(--space-lg);
-      letter-spacing: 0em;
-    }
-
-    .hero-cta {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-sm);
-    }
-
-    /* ============================================
-       Buttons
-       ============================================ */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 28px;
-      border-radius: 980px;
-      font-size: 17px;
-      font-weight: 400;
-      font-family: var(--font-primary);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: none;
-      text-decoration: none;
-      letter-spacing: 0.004em;
-    }
-    .btn:hover {
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: var(--blue);
-      color: var(--white);
-    }
-    .btn-primary:hover {
-      background: var(--blue-hover);
-      color: var(--white);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--teal);
-      border: 1px solid var(--dark-gray);
-    }
-    .btn-secondary:hover {
-      color: var(--white);
-      border-color: var(--mid-gray);
-    }
-
-    /* ============================================
-       Section Base
-       ============================================ */
-    .section {
-      padding: var(--space-2xl) 22px;
-    }
-
-    .section-inner {
-      max-width: 980px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--mid-gray);
-      text-align: center;
-      margin-bottom: var(--space-xs);
-      letter-spacing: 0.011em;
-    }
-
-    .section-title {
-      font-size: 48px;
-      font-weight: 600;
-      line-height: 1.08;
-      letter-spacing: -0.003em;
-      text-align: center;
-      margin-bottom: var(--space-md);
-    }
-
-    .section-subtitle {
+    .top-hero-sub {
       font-size: 21px;
-      font-weight: 400;
       color: var(--mid-gray);
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto var(--space-xl);
-      line-height: 1.47;
-      letter-spacing: 0.011em;
+      line-height: 1.6;
+      max-width: 580px;
+      margin: 0 auto 48px;
+      letter-spacing: 0.01em;
     }
 
-    /* ============================================
-       Features — ダーク背景セクション
-       ============================================ */
-    .section-dark {
-      background: var(--pure-black);
-      color: var(--off-white);
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
     }
 
-    .section-dark .section-title {
-      color: var(--off-white);
-    }
-
-    .section-light-gray {
+    /* Problem Statement */
+    .problem {
+      padding: 140px 22px;
       background: var(--off-white);
     }
 
-    /* ============================================
-       Feature Grid — 2x2カードグリッド
-       ============================================ */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-md);
-    }
-
-    .feature-card {
-      background: var(--near-black);
-      border-radius: 20px;
-      padding: var(--space-lg);
-      display: flex;
-      flex-direction: column;
-      min-height: 400px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: scale(1.01);
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      margin-bottom: var(--space-md);
-    }
-
-    .feature-icon-blue { background: rgba(0, 113, 227, 0.2); color: var(--blue); }
-    .feature-icon-purple { background: rgba(175, 82, 222, 0.2); color: var(--purple); }
-    .feature-icon-green { background: rgba(52, 199, 89, 0.2); color: var(--green); }
-    .feature-icon-orange { background: rgba(255, 149, 0, 0.2); color: var(--orange); }
-
-    .feature-card h3 {
-      font-size: 28px;
-      font-weight: 600;
-      color: var(--off-white);
-      margin-bottom: var(--space-sm);
-      line-height: 1.1;
-      letter-spacing: 0em;
-    }
-
-    .feature-card p {
-      font-size: 17px;
-      color: var(--mid-gray);
-      line-height: 1.47;
-      letter-spacing: 0.004em;
-    }
-
-    .feature-card .feature-visual {
-      margin-top: auto;
-      padding-top: var(--space-lg);
-      display: flex;
-      justify-content: center;
-    }
-
-    .feature-visual-block {
-      width: 100%;
-      height: 160px;
-      border-radius: 12px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .visual-palette {
-      display: flex;
-      gap: 4px;
-      height: 100%;
-    }
-    .visual-palette span {
-      flex: 1;
-      border-radius: 8px;
-    }
-
-    .visual-typo {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 8px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 12px;
-      height: 100%;
-    }
-    .visual-typo .typo-line {
-      height: 8px;
-      border-radius: 4px;
-      background: var(--off-white);
-      opacity: 0.15;
-    }
-    .visual-typo .typo-line:nth-child(1) { width: 60%; height: 20px; opacity: 0.3; }
-    .visual-typo .typo-line:nth-child(2) { width: 80%; }
-    .visual-typo .typo-line:nth-child(3) { width: 45%; }
-    .visual-typo .typo-line:nth-child(4) { width: 70%; }
-
-    .visual-grid-demo {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      padding: 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 12px;
-      height: 100%;
-    }
-    .visual-grid-demo span {
-      background: rgba(0, 113, 227, 0.2);
-      border-radius: 6px;
-      border: 1px solid rgba(0, 113, 227, 0.15);
-    }
-    .visual-grid-demo span:nth-child(1) { grid-column: span 2; }
-    .visual-grid-demo span:nth-child(4) { grid-column: span 3; }
-
-    .visual-spacing {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 12px;
-      height: 100%;
-    }
-    .visual-spacing .space-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .visual-spacing .space-block {
-      height: 24px;
-      border-radius: 4px;
-      background: var(--purple);
-      opacity: 0.3;
-    }
-    .visual-spacing .space-gap {
-      flex: 1;
-      height: 1px;
-      border-top: 1px dashed var(--dark-gray);
-    }
-    .visual-spacing .space-label {
-      font-size: 11px;
-      color: var(--dark-gray);
-      font-family: var(--font-mono);
-      white-space: nowrap;
-    }
-
-    /* ============================================
-       Principles — 横スクロールカード
-       ============================================ */
-    .principles-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-md);
-    }
-
-    .principle-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: var(--space-lg) var(--space-md);
-      text-align: center;
-      border: 1px solid var(--light-gray);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .principle-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
-    }
-
-    .principle-number {
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: var(--space-sm);
-      background: linear-gradient(135deg, var(--blue), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .principle-card h3 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: var(--space-xs);
-      color: var(--near-black);
-      letter-spacing: 0em;
-    }
-
-    .principle-card .principle-en {
-      font-size: 14px;
-      color: var(--mid-gray);
-      margin-bottom: var(--space-sm);
-      letter-spacing: 0.011em;
-    }
-
-    .principle-card p {
-      font-size: 15px;
-      color: var(--dark-gray);
-      line-height: 1.5;
-      letter-spacing: 0.004em;
-    }
-
-    /* ============================================
-       Showcase — フルブリード + テキスト中央
-       ============================================ */
-    .showcase {
-      padding: var(--space-2xl) 22px;
-      background: var(--pure-black);
-      text-align: center;
-    }
-
-    .showcase-inner {
-      max-width: 980px;
+    .problem-inner {
+      max-width: 720px;
       margin: 0 auto;
+      text-align: center;
     }
 
-    .showcase-demo {
-      margin-top: var(--space-xl);
-      background: var(--near-black);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .problem-quote {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--near-black);
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
     }
 
-    .showcase-browser {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 20px;
-      background: rgba(255, 255, 255, 0.04);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .browser-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    .browser-dot:nth-child(1) { background: var(--red); }
-    .browser-dot:nth-child(2) { background: var(--orange); }
-    .browser-dot:nth-child(3) { background: var(--green); }
-
-    .browser-bar {
-      flex: 1;
-      height: 28px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 6px;
-      margin-left: 8px;
-      display: flex;
-      align-items: center;
-      padding: 0 12px;
-      font-size: 13px;
-      color: var(--dark-gray);
-      font-family: var(--font-mono);
-    }
-
-    .showcase-content {
-      padding: var(--space-lg);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-md);
-      min-height: 320px;
-    }
-
-    .showcase-sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: var(--space-md);
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 12px;
-    }
-
-    .sidebar-item {
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      color: var(--mid-gray);
-      cursor: default;
-      transition: all 0.2s;
-    }
-    .sidebar-item.active {
-      background: rgba(0, 113, 227, 0.15);
+    .problem-quote .highlight {
       color: var(--blue);
     }
 
-    .showcase-preview {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-      padding: var(--space-md);
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 12px;
-    }
-
-    .preview-block {
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-    }
-    .preview-block-hero {
-      height: 120px;
-      background: linear-gradient(135deg, rgba(0, 113, 227, 0.2), rgba(175, 82, 222, 0.2));
-    }
-    .preview-block-text {
-      height: 12px;
-      width: 80%;
-      margin-top: 12px;
-    }
-    .preview-block-text-short {
-      height: 12px;
-      width: 50%;
-      margin-top: 8px;
-    }
-    .preview-block-btn {
-      display: inline-block;
-      height: 32px;
-      width: 100px;
-      margin-top: 16px;
-      border-radius: 980px;
-      background: rgba(0, 113, 227, 0.3);
-    }
-
-    /* ============================================
-       Stats
-       ============================================ */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-md);
-      text-align: center;
-    }
-
-    .stat-item {
-      padding: var(--space-lg) var(--space-md);
-    }
-
-    .stat-number {
-      font-size: 64px;
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.003em;
-      color: var(--near-black);
-    }
-
-    .stat-label {
+    .problem-body {
       font-size: 17px;
       color: var(--mid-gray);
-      margin-top: var(--space-xs);
-      letter-spacing: 0.004em;
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto;
     }
 
-    /* ============================================
-       CTA Section
-       ============================================ */
-    .cta-section {
-      padding: var(--space-3xl) 22px;
-      text-align: center;
+    /* What is DESIGN.md */
+    .what-section {
+      padding: 140px 22px;
       background: var(--pure-black);
     }
 
-    .cta-title {
-      font-size: 64px;
-      font-weight: 700;
-      color: var(--off-white);
-      line-height: 1.05;
-      letter-spacing: -0.003em;
-      margin: 0 auto var(--space-md);
-      max-width: 980px;
-    }
-
-    .cta-subtitle {
-      font-size: 21px;
-      color: var(--mid-gray);
-      margin: 0 auto var(--space-lg);
-      letter-spacing: 0.011em;
-      max-width: 600px;
-    }
-
-    /* ============================================
-       Footer
-       ============================================ */
-    .footer {
-      background: var(--off-white);
-      padding: var(--space-lg) 22px;
-      border-top: 1px solid var(--light-gray);
-    }
-
-    .footer-inner {
+    .what-inner {
       max-width: 980px;
       margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
+    }
+
+    .what-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: center;
     }
 
-    .footer-text {
-      font-size: 12px;
-      color: var(--mid-gray);
-      letter-spacing: 0.004em;
+    .what-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--off-white);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
     }
 
-    .footer-links {
+    .what-text p {
+      font-size: 17px;
+      color: var(--mid-gray);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .what-visual {
+      background: var(--near-black);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--mid-gray);
+      overflow: hidden;
+    }
+
+    .code-key { color: #6EE7B7; }
+    .code-val { color: #93C5FD; }
+    .code-comment { color: #4B5563; }
+    .code-section { color: #F9A8D4; font-weight: 600; }
+
+    /* How it works — 3 steps */
+    .how-section {
+      padding: 140px 22px;
+      background: var(--white);
+    }
+
+    .how-inner {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .how-steps {
       display: flex;
-      gap: var(--space-md);
-      list-style: none;
+      flex-direction: column;
+      gap: 100px;
+      margin-top: 80px;
     }
 
-    .footer-links a {
-      font-size: 12px;
-      color: var(--mid-gray);
-      transition: color 0.2s;
-      text-decoration: none;
+    .how-step {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
     }
-    .footer-links a:hover {
+
+    .how-step.reverse {
+      direction: rtl;
+    }
+    .how-step.reverse > * {
+      direction: ltr;
+    }
+
+    .step-number {
+      font-size: 80px;
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--blue), #764BA2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .step-title {
+      font-size: 32px;
+      font-weight: 600;
       color: var(--near-black);
-      text-decoration: none;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
     }
 
-    /* ============================================
-       Scroll Animations
-       ============================================ */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .step-desc {
+      font-size: 17px;
+      color: var(--mid-gray);
+      line-height: 1.8;
     }
 
-    /* ============================================
-       Responsive — Tablet
-       ============================================ */
+    .step-visual {
+      background: var(--off-white);
+      border-radius: 16px;
+      padding: 40px;
+      border: 1px solid var(--light-gray);
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-visual-dark {
+      background: var(--near-black);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Gallery Preview strip */
+    .gallery-strip {
+      display: flex;
+      gap: 16px;
+      flex-wrap: nowrap;
+      overflow: hidden;
+    }
+
+    .gallery-strip-item {
+      width: 160px;
+      height: 120px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-strip-item .mini-title {
+      width: 50%;
+      height: 6px;
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+
+    /* Why now */
+    .why-section {
+      padding: 140px 22px;
+      background: var(--pure-black);
+    }
+
+    .why-inner {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 64px;
+    }
+
+    .why-card {
+      padding: 40px 32px;
+      border-radius: 16px;
+      background: var(--near-black);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .why-card-number {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue);
+      font-family: var(--font-mono);
+      margin-bottom: 20px;
+    }
+
+    .why-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--off-white);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .why-card p {
+      font-size: 15px;
+      color: var(--mid-gray);
+      line-height: 1.7;
+    }
+
+    /* Numbers */
+    .numbers-section {
+      padding: 100px 22px;
+      background: var(--off-white);
+      text-align: center;
+    }
+
+    .numbers-grid {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .number-item {
+      text-align: center;
+    }
+
+    .number-value {
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--near-black);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .number-label {
+      font-size: 15px;
+      color: var(--mid-gray);
+      margin-top: 8px;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      padding: 180px 22px;
+      background: var(--pure-black);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse at bottom, rgba(102, 126, 234, 0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .final-cta h2 {
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--off-white);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .final-cta p {
+      font-size: 19px;
+      color: var(--mid-gray);
+      margin-bottom: 48px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
     @media (max-width: 1068px) {
-      .hero-title {
-        font-size: 72px;
-      }
-      .hero-subtitle {
-        font-size: 24px;
-      }
-      .section-title {
-        font-size: 40px;
-      }
-      .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .principles-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .stat-number {
-        font-size: 48px;
-      }
-      .cta-title {
-        font-size: 48px;
-      }
+      .top-hero h1 { font-size: 56px; }
+      .what-grid, .how-step { grid-template-columns: 1fr; gap: 48px; }
+      .how-step.reverse { direction: ltr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .problem-quote { font-size: 26px; }
+      .final-cta h2 { font-size: 40px; }
+      .numbers-grid { gap: 40px; }
+      .number-value { font-size: 48px; }
     }
 
-    /* ============================================
-       Responsive — Mobile
-       ============================================ */
     @media (max-width: 735px) {
-      .hero {
-        padding: var(--space-2xl) 22px var(--space-xl);
-        min-height: auto;
-      }
-      .hero-title {
-        font-size: 48px;
-      }
-      .hero-subtitle {
-        font-size: 19px;
-      }
-      .hero-cta {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-      .btn {
-        width: 100%;
-      }
-      .section {
-        padding: var(--space-xl) 22px;
-      }
-      .section-title {
-        font-size: 32px;
-        line-height: 1.125;
-        letter-spacing: 0.004em;
-      }
-      .section-subtitle {
-        font-size: 17px;
-      }
-      .nav-links {
-        display: none;
-      }
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-      .feature-card {
-        min-height: 300px;
-      }
-      .principles-grid {
-        grid-template-columns: 1fr;
-      }
-      .showcase-content {
-        grid-template-columns: 1fr;
-      }
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      .stat-item {
-        padding: var(--space-md);
-      }
-      .stat-number {
-        font-size: 40px;
-      }
-      .cta-title {
-        font-size: 36px;
-      }
-      .footer-inner {
-        flex-direction: column;
-        gap: var(--space-sm);
-        text-align: center;
-      }
+      .top-hero { padding: 120px 22px 80px; min-height: auto; }
+      .top-hero h1 { font-size: 38px; }
+      .top-hero-sub { font-size: 17px; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .hero-actions .btn { width: 100%; max-width: 280px; }
+      .problem { padding: 80px 22px; }
+      .problem-quote { font-size: 22px; }
+      .what-section, .how-section, .why-section { padding: 80px 22px; }
+      .what-text h2 { font-size: 32px; }
+      .step-number { font-size: 56px; }
+      .step-title { font-size: 24px; }
+      .numbers-grid { flex-direction: column; gap: 32px; }
+      .number-value { font-size: 40px; }
+      .final-cta { padding: 100px 22px; }
+      .final-cta h2 { font-size: 32px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ========================================
-       Navigation
-       ======================================== -->
+  <!-- Navigation -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">VibeDesign</a>
+      <a href="index.html" class="nav-logo">DESIGN.md</a>
       <ul class="nav-links">
         <li><a href="features.html">Features</a></li>
         <li><a href="principles.html">Principles</a></li>
@@ -860,209 +444,159 @@
   </nav>
 
   <!-- ========================================
-       Hero — ステージ照明効果（design.md #9）
+       Hero — ミッション・ステートメント
+       Anthropic風: 短く宣言的なコピー
        ======================================== -->
-  <section class="hero">
-    <p class="hero-label">Introducing VibeDesign</p>
-    <h1 class="hero-title">
-      デザインを、<br><span class="gradient-text">直感で。</span>
+  <section class="top-hero">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      AIエージェント時代のデザイン再現手法
+    </div>
+    <h1>
+      デザインは<br><span class="em">DESIGN.md</span> で決まる。
     </h1>
-    <p class="hero-subtitle">
-      体系化されたデザインシステムで、<br>
-      誰もが美しいWebを生み出せる。
+    <p class="top-hero-sub">
+      1ファイルにデザインルールを定義する。<br>
+      AIエージェントがそれを読み、一貫性のあるUIを自動生成する。<br>
+      人間が判断し、AIが再現する — 新しいデザインワークフロー。
     </p>
-    <div class="hero-cta">
-      <a href="features.html" class="btn btn-primary">Features を見る</a>
-      <a href="#features" class="btn btn-secondary">まずは概要から</a>
+    <div class="hero-actions">
+      <a href="gallery.html" class="btn btn-primary">50のテンプレートを見る</a>
+      <a href="#what" class="btn btn-secondary">DESIGN.md とは</a>
     </div>
   </section>
 
   <!-- ========================================
-       Features — 4カード（design.md #7 グリッド）
+       Problem — なぜ必要か
+       Anthropic風: 1つの引用的な問いかけ
        ======================================== -->
-  <section id="features" class="section section-dark">
-    <div class="section-inner">
-      <p class="section-label">Features</p>
-      <h2 class="section-title" style="color: var(--off-white);">デザインを、構造から変える。</h2>
-      <p class="section-subtitle">
-        カラー、タイポグラフィ、レイアウト、余白。<br>
-        4つの軸を体系化することで、デザインは再現可能になる。
+  <section class="problem fade-in">
+    <div class="problem-inner">
+      <p class="problem-quote">
+        AIにデザインを頼むたびに、<br>
+        <span class="highlight">毎回違うものが出てくる。</span><br>
+        色もフォントもレイアウトもバラバラ。
       </p>
-
-      <div class="feature-grid">
-        <!-- Card 1: Color Palette -->
-        <div class="feature-card fade-in">
-          <div class="feature-icon feature-icon-blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
-          </div>
-          <h3>カラーパレット</h3>
-          <p>ベース7色 + アクセント7色の体系で、ライト・ダーク両モードに対応。意味のある色だけを使う。</p>
-          <div class="feature-visual">
-            <div class="feature-visual-block">
-              <div class="visual-palette">
-                <span style="background: #0071E3;"></span>
-                <span style="background: #5AC8FA;"></span>
-                <span style="background: #34C759;"></span>
-                <span style="background: #FF9500;"></span>
-                <span style="background: #AF52DE;"></span>
-                <span style="background: #FF3B30;"></span>
-                <span style="background: #1D1D1F;"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: Typography -->
-        <div class="feature-card fade-in">
-          <div class="feature-icon feature-icon-purple">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
-          </div>
-          <h3>タイポグラフィ</h3>
-          <p>SF Pro準拠のタイプスケール。96px〜12pxまでの階層を、3つのウェイトだけで構築する。</p>
-          <div class="feature-visual">
-            <div class="feature-visual-block">
-              <div class="visual-typo">
-                <div class="typo-line"></div>
-                <div class="typo-line"></div>
-                <div class="typo-line"></div>
-                <div class="typo-line"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: Grid -->
-        <div class="feature-card fade-in">
-          <div class="feature-icon feature-icon-green">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          </div>
-          <h3>レイアウト</h3>
-          <p>12カラムグリッド、最大幅980px。フルブリード背景と狭いコンテンツ幅で高級感を演出。</p>
-          <div class="feature-visual">
-            <div class="feature-visual-block">
-              <div class="visual-grid-demo">
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Spacing -->
-        <div class="feature-card fade-in">
-          <div class="feature-icon feature-icon-orange">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
-          </div>
-          <h3>ホワイトスペース</h3>
-          <p>8pxグリッドに基づくスペーシングシステム。「余白こそがデザイン」という哲学を実装する。</p>
-          <div class="feature-visual">
-            <div class="feature-visual-block">
-              <div class="visual-spacing">
-                <div class="space-row">
-                  <div class="space-block" style="width: 40px;"></div>
-                  <div class="space-gap"></div>
-                  <span class="space-label">48px</span>
-                </div>
-                <div class="space-row">
-                  <div class="space-block" style="width: 60px;"></div>
-                  <div class="space-gap"></div>
-                  <span class="space-label">80px</span>
-                </div>
-                <div class="space-row">
-                  <div class="space-block" style="width: 90px;"></div>
-                  <div class="space-gap"></div>
-                  <span class="space-label">120px</span>
-                </div>
-                <div class="space-row">
-                  <div class="space-block" style="width: 130px;"></div>
-                  <div class="space-gap"></div>
-                  <span class="space-label">200px</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================
-       4 Principles — design.md 4大原則
-       ======================================== -->
-  <section id="principles" class="section section-light-gray">
-    <div class="section-inner">
-      <p class="section-label">Principles</p>
-      <h2 class="section-title">デザインの4大原則</h2>
-      <p class="section-subtitle">
-        Robin Williams が提唱した4つの原則。<br>
-        意識するだけで、デザインの質は劇的に変わる。
+      <p class="problem-body">
+        AIエージェントは優秀なビルダーだが、デザインの「正解」を知らない。
+        プロンプトのたびに異なる判断をする。フォントが変わる。色がブレる。余白が崩れる。
+        必要なのは、AIに渡す「デザインの仕様書」だった。
       </p>
+    </div>
+  </section>
 
-      <div class="principles-grid">
-        <div class="principle-card fade-in">
-          <div class="principle-number">01</div>
-          <h3>近接</h3>
-          <p class="principle-en">Proximity</p>
-          <p>関連する要素を近くにまとめ、無関係な要素は離す。情報の構造が視覚的に明確になる。</p>
+  <!-- ========================================
+       What — DESIGN.md とは
+       Anthropic風: プロダクトを定義する
+       ======================================== -->
+  <section class="what-section" id="what">
+    <div class="what-inner">
+      <div class="what-grid fade-in">
+        <div class="what-text">
+          <h2>Markdownファイル<br>1つで、デザインが<br>統一される。</h2>
+          <p>
+            DESIGN.md は、プロジェクトのデザインルールを定義するMarkdownファイル。
+            カラー、フォント、余白、コンポーネントスタイル — すべての判断基準を1ファイルにまとめる。
+          </p>
+          <p>
+            プロジェクトルートに置くだけで、Claude Code をはじめとするAIエージェントが自動で読み込み、
+            定義に準拠したコードを生成する。
+          </p>
         </div>
-
-        <div class="principle-card fade-in">
-          <div class="principle-number">02</div>
-          <h3>整列</h3>
-          <p class="principle-en">Alignment</p>
-          <p>すべての要素を見えない線で揃える。ページ全体に一体感と秩序が生まれる。</p>
-        </div>
-
-        <div class="principle-card fade-in">
-          <div class="principle-number">03</div>
-          <h3>反復</h3>
-          <p class="principle-en">Repetition</p>
-          <p>色・フォント・パターンを繰り返し使う。ブランドとしての統一感が強まる。</p>
-        </div>
-
-        <div class="principle-card fade-in">
-          <div class="principle-number">04</div>
-          <h3>対比</h3>
-          <p class="principle-en">Contrast</p>
-          <p>異なる要素は大胆に違わせる。視覚的な階層と注目ポイントが生まれる。</p>
+        <div class="what-visual">
+          <span class="code-comment"># DESIGN.md</span><br><br>
+          <span class="code-section">## Color Palette & Roles</span><br>
+          <span class="code-key">Primary:</span>      <span class="code-val">#0071E3</span><br>
+          <span class="code-key">Background:</span>   <span class="code-val">#FFFFFF</span><br>
+          <span class="code-key">Text:</span>         <span class="code-val">#1D1D1F</span><br>
+          <span class="code-key">Surface:</span>      <span class="code-val">#F5F5F7</span><br><br>
+          <span class="code-section">## Typography Rules</span><br>
+          <span class="code-key">Font:</span>         <span class="code-val">"Inter", sans-serif</span><br>
+          <span class="code-key">Base size:</span>    <span class="code-val">16px</span><br>
+          <span class="code-key">H1:</span>           <span class="code-val">Bold 48px</span><br><br>
+          <span class="code-section">## Component Stylings</span><br>
+          <span class="code-key">Button radius:</span> <span class="code-val">12px</span><br>
+          <span class="code-key">Card radius:</span>   <span class="code-val">16px</span><br>
+          <span class="code-key">Nav height:</span>    <span class="code-val">64px</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================
-       Showcase — ブラウザモック
+       How — 3ステップ
+       Anthropic風: 使い方をshow-don't-tellで
        ======================================== -->
-  <section id="showcase" class="showcase">
-    <div class="showcase-inner">
-      <p class="section-label">Showcase</p>
-      <h2 class="section-title" style="color: var(--off-white);">つくるを、見ながら。</h2>
-      <p class="section-subtitle">
-        デザインシステムに基づいたコンポーネントが、<br>
-        リアルタイムで画面に反映される。
-      </p>
+  <section class="how-section">
+    <div class="how-inner">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">3ステップで、デザインが変わる。</h2>
 
-      <div class="showcase-demo fade-in">
-        <div class="showcase-browser">
-          <span class="browser-dot"></span>
-          <span class="browser-dot"></span>
-          <span class="browser-dot"></span>
-          <div class="browser-bar">vibedesign.app</div>
-        </div>
-        <div class="showcase-content">
-          <div class="showcase-sidebar">
-            <div class="sidebar-item active">Colors</div>
-            <div class="sidebar-item">Typography</div>
-            <div class="sidebar-item">Layout</div>
-            <div class="sidebar-item">Spacing</div>
-            <div class="sidebar-item">Components</div>
-            <div class="sidebar-item">Dark Mode</div>
+      <div class="how-steps">
+        <!-- Step 1 -->
+        <div class="how-step fade-in">
+          <div>
+            <div class="step-number">01</div>
+            <h3 class="step-title">テンプレートを選ぶ</h3>
+            <p class="step-desc">
+              50種類のギャラリーから、プロジェクトに合うスタイルを選ぶ。
+              Stripe風のクリーンなFinTech、ブルータリズムの大胆さ、
+              禅の静寂 — どんな世界観も1クリックで。
+            </p>
           </div>
-          <div class="showcase-preview">
-            <div class="preview-block preview-block-hero"></div>
-            <div class="preview-block preview-block-text"></div>
-            <div class="preview-block preview-block-text-short"></div>
-            <div class="preview-block-btn"></div>
+          <div class="step-visual">
+            <div class="gallery-strip">
+              <div class="gallery-strip-item" style="background: #F6F9FC;"><div class="mini-title" style="background: #635BFF;"></div></div>
+              <div class="gallery-strip-item" style="background: #000;"><div class="mini-title" style="background: #5E6AD2;"></div></div>
+              <div class="gallery-strip-item" style="background: #FFF;"><div class="mini-title" style="background: #000;"></div></div>
+              <div class="gallery-strip-item" style="background: #121212;"><div class="mini-title" style="background: #1DB954;"></div></div>
+              <div class="gallery-strip-item" style="background: #E0E5EC;"><div class="mini-title" style="background: #6C63FF;"></div></div>
+              <div class="gallery-strip-item" style="background: #1A0A2E;"><div class="mini-title" style="background: #FF71CE;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="how-step reverse fade-in">
+          <div>
+            <div class="step-number">02</div>
+            <h3 class="step-title">プロジェクトルートに置く</h3>
+            <p class="step-desc">
+              ダウンロードした DESIGN.md を、プロジェクトのルートディレクトリに配置する。
+              必要に応じて値をカスタマイズ。
+              Claude Code は起動時にこのファイルを自動で読み込む。
+            </p>
+          </div>
+          <div class="step-visual step-visual-dark">
+            <div style="font-family: var(--font-mono); font-size: 14px; color: var(--mid-gray); line-height: 2;">
+              <span style="color: #6EE7B7;">your-project/</span><br>
+              &nbsp;&nbsp;<span style="color: #93C5FD;">DESIGN.md</span> <span style="color: #4B5563;">&lt;-- ここに置く</span><br>
+              &nbsp;&nbsp;src/<br>
+              &nbsp;&nbsp;package.json<br>
+              &nbsp;&nbsp;...
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="how-step fade-in">
+          <div>
+            <div class="step-number">03</div>
+            <h3 class="step-title">AIに「作って」と言う</h3>
+            <p class="step-desc">
+              あとは自然言語で指示するだけ。AIエージェントがDESIGN.mdを参照し、
+              カラー・フォント・余白・コンポーネントすべてが統一されたコードを生成する。
+              何度頼んでも、同じデザインが再現される。
+            </p>
+          </div>
+          <div class="step-visual step-visual-dark">
+            <div style="font-family: var(--font-mono); font-size: 14px; line-height: 2;">
+              <span style="color: #4B5563;">$</span> <span style="color: #6EE7B7;">claude</span><br>
+              <span style="color: #93C5FD;">&gt;</span> <span style="color: var(--off-white);">LPを作成して</span><br><br>
+              <span style="color: #4B5563;">// DESIGN.md を自動読み込み</span><br>
+              <span style="color: #4B5563;">// カラー・フォント・余白が統一された</span><br>
+              <span style="color: #4B5563;">// HTML/CSS を生成</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1070,44 +604,75 @@
   </section>
 
   <!-- ========================================
-       Stats
+       Why now — なぜ今このアプローチか
+       Anthropic風: 哲学を伝える3カード
        ======================================== -->
-  <section class="section" style="text-align: center;">
-    <div class="section-inner">
-      <div class="stats-grid">
-        <div class="stat-item fade-in">
-          <div class="stat-number">9</div>
-          <div class="stat-label">デザイン視点を体系化</div>
+  <section class="why-section">
+    <div class="why-inner">
+      <p class="section-label" style="color: var(--mid-gray);">Why DESIGN.md</p>
+      <h2 class="section-title" style="color: var(--off-white);">AIエージェント時代に<br>デザインが壊れる理由。</h2>
+
+      <div class="why-grid">
+        <div class="why-card fade-in">
+          <div class="why-card-number">01</div>
+          <h3>AIはデザインの<br>文脈を持たない</h3>
+          <p>LLMは毎回ゼロからデザイン判断をする。前回のプロンプトで使った色やフォントを覚えていない。DESIGN.md が永続的な文脈になる。</p>
         </div>
-        <div class="stat-item fade-in">
-          <div class="stat-number">14</div>
-          <div class="stat-label">カラートークン定義</div>
+        <div class="why-card fade-in">
+          <div class="why-card-number">02</div>
+          <h3>Figmaのデザインは<br>コードに届かない</h3>
+          <p>美しいFigmaファイルがあっても、AIエージェントはそれを読めない。Markdownなら、どのAIツールでも即座にパースできる。</p>
         </div>
-        <div class="stat-item fade-in">
-          <div class="stat-number">8px</div>
-          <div class="stat-label">グリッドベースの余白設計</div>
+        <div class="why-card fade-in">
+          <div class="why-card-number">03</div>
+          <h3>デザイナー不在でも<br>一貫性を保てる</h3>
+          <p>エンジニアだけのチーム、個人開発、スタートアップ。DESIGN.md があれば、デザインの専門知識がなくてもプロ品質のUIが生まれる。</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================
-       CTA
+       Numbers
        ======================================== -->
-  <section id="cta" class="cta-section">
-    <h2 class="cta-title fade-in">次のステップへ。</h2>
-    <p class="cta-subtitle fade-in">9つの視点で体系化されたデザインシステムを、詳しく見る。</p>
-    <div class="fade-in" style="text-align: center;">
-      <a href="features.html" class="btn btn-primary btn-large">Features を見る →</a>
+  <section class="numbers-section fade-in">
+    <div class="numbers-grid">
+      <div class="number-item">
+        <div class="number-value">50</div>
+        <div class="number-label">デザインテンプレート</div>
+      </div>
+      <div class="number-item">
+        <div class="number-value">7</div>
+        <div class="number-label">定義セクション</div>
+      </div>
+      <div class="number-item">
+        <div class="number-value">1</div>
+        <div class="number-label">ファイルで完結</div>
+      </div>
+      <div class="number-item">
+        <div class="number-value">0</div>
+        <div class="number-label">依存パッケージ</div>
+      </div>
     </div>
   </section>
 
   <!-- ========================================
-       Footer
+       Final CTA
+       Anthropic風: 余韻のあるクロージング
        ======================================== -->
+  <section class="final-cta">
+    <h2 class="fade-in">デザインの正解を、<br>AIに渡そう。</h2>
+    <p class="fade-in">50のテンプレートから選ぶか、ゼロから定義するか。<br>あなたのプロジェクトに合ったDESIGN.mdを見つけよう。</p>
+    <div class="hero-actions fade-in">
+      <a href="gallery.html" class="btn btn-primary btn-large">Gallery を見る →</a>
+      <a href="get-started.html" class="btn btn-secondary btn-large">使い方を見る</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
-      <p class="footer-text">Copyright &copy; 2026 VibeDesign. All rights reserved.</p>
+      <p class="footer-text">Copyright &copy; 2026 DESIGN.md by VibeDesign. All rights reserved.</p>
       <ul class="footer-links">
         <li><a href="#">Privacy</a></li>
         <li><a href="#">Terms</a></li>
@@ -1117,6 +682,5 @@
   </footer>
 
   <script src="scripts.js"></script>
-
 </body>
 </html>
