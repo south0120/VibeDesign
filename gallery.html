@@ -31,46 +31,40 @@
     }
 
     .gallery-preview {
-      height: 180px;
+      height: 220px;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      cursor: pointer;
     }
 
-    .gallery-preview-inner {
-      width: 80%;
-      height: 70%;
-      border-radius: 8px;
+    .gallery-preview-iframe {
+      width: 1200px;
+      height: 900px;
+      border: none;
+      transform: scale(0.283);
+      transform-origin: top left;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .gallery-preview-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .gallery-preview-loading {
+      position: absolute;
+      inset: 0;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 16px;
-    }
-
-    .preview-title-bar {
-      width: 50%;
-      height: 8px;
-      border-radius: 4px;
-      opacity: 0.8;
-    }
-
-    .preview-text-bar {
-      width: 70%;
-      height: 5px;
-      border-radius: 3px;
-      opacity: 0.3;
-    }
-
-    .preview-btn-bar {
-      width: 30%;
-      height: 12px;
-      border-radius: 980px;
-      margin-top: 4px;
-      opacity: 0.9;
+      background: var(--off-white);
+      font-size: 13px;
+      color: var(--mid-gray);
+      z-index: 0;
     }
 
     .gallery-info {
@@ -451,19 +445,21 @@
         ? templates
         : templates.filter(t => t.tags.includes(filter));
 
-      filtered.forEach(t => {
-        const isDark = t.tags.includes('dark');
+      filtered.forEach((t, idx) => {
         const card = document.createElement('div');
         card.className = 'gallery-card fade-in visible';
         card.innerHTML = `
-          <div class="gallery-preview" style="background: ${t.bg};">
-            <div class="gallery-preview-inner" style="background: ${t.surface};">
-              <div class="preview-title-bar" style="background: ${t.text};"></div>
-              <div class="preview-text-bar" style="background: ${t.text};"></div>
-              <div class="preview-text-bar" style="background: ${t.text}; width: 50%;"></div>
-              <div class="preview-btn-bar" style="background: ${t.primary};"></div>
-            </div>
-          </div>
+          <a href="preview.html?id=${t.id}" class="gallery-preview" style="background: ${t.bg};">
+            <div class="gallery-preview-loading">Loading preview...</div>
+            <iframe
+              class="gallery-preview-iframe"
+              data-src="preview.html?id=${t.id}&embed=1"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true"
+            ></iframe>
+            <div class="gallery-preview-overlay"></div>
+          </a>
           <div class="gallery-info">
             <div class="gallery-card-title">${t.title}</div>
             <div class="gallery-card-vibe">${t.vibe}</div>
@@ -496,6 +492,7 @@
         document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
         e.target.classList.add('active');
         renderGallery(e.target.dataset.filter);
+        loadIframes();
       }
     });
 
@@ -530,6 +527,30 @@
 
     // Initial render
     renderGallery();
+
+    // Lazy-load iframes with IntersectionObserver
+    function loadIframes() {
+      const iframeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const iframe = entry.target;
+            if (!iframe.src && iframe.dataset.src) {
+              iframe.src = iframe.dataset.src;
+              iframe.addEventListener('load', () => {
+                const loading = iframe.parentElement.querySelector('.gallery-preview-loading');
+                if (loading) loading.style.display = 'none';
+              });
+            }
+            iframeObserver.unobserve(iframe);
+          }
+        });
+      }, { rootMargin: '200px' });
+
+      document.querySelectorAll('.gallery-preview-iframe').forEach(iframe => {
+        iframeObserver.observe(iframe);
+      });
+    }
+    loadIframes();
   </script>
 
   <script src="scripts.js"></script>
